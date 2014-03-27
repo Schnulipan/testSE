@@ -3,7 +3,6 @@ package dehtwgSEMinesweeperModels;
 import java.awt.image.BufferedImage;
 import java.awt.image.BufferedImageOp;
 import java.io.File;
-
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
