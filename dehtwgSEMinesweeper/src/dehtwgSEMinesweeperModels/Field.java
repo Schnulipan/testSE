@@ -40,11 +40,11 @@ public class Field {
 		cells[ROW][COL].setState(cellState.open);
 		
 		/*first check if the selected cell inherits a bomb*/
-		if(cells[ROW][COL].isHasBomb()){			
+		if(cells[ROW][COL].hasBomb()){			
 			/*the player has lost and now we will open all bombs*/
 			for(int i = 0; i < rows; i++){
 				for(int o = 0; o < cols; o++){
-					if(cells[i][o].isHasBomb()){
+					if(cells[i][o].hasBomb()){
 						cells[i][o].setPresentIcon(cells[i][o].getIcons().getSubimage(20, 20, 20, 20));
 					}
 				}

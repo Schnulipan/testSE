@@ -71,11 +71,11 @@ public class Cell {
 		return Icons;
 	}
 	
-	public boolean isHasBomb() {
+	public boolean hasBomb() {
 		return hasBomb;
 	}
 
-	public void setHasBomb(boolean hasBomb) {
+	public void setBomb(boolean hasBomb) {
 		this.hasBomb = hasBomb;
 	}
 	/*-------------------------------------------------------------------------------*/
