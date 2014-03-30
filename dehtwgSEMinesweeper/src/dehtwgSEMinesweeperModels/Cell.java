@@ -13,7 +13,7 @@ public class Cell {
 	public static enum cellState {hidden, open, checked}
 	
 	/*holds all the possible images a cell can have*/
-	private final BufferedImage Icons = ImageIO.read(new File("Icons.gif"));
+	private BufferedImage Icons = ImageIO.read(new File("Icons.gif"));
 	/*-----------------------------------------------*/
 	
 	
@@ -38,6 +38,7 @@ public class Cell {
 
 	/*CONSTRUCTOR-------*/
 	public Cell() throws IOException{
+		
 		/*sets the present icon to hidden*/
 		presentIcon = Icons.getSubimage(0,0,20,20);
 		
