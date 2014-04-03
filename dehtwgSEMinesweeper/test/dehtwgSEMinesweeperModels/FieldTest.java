@@ -2,17 +2,26 @@ package dehtwgSEMinesweeperModels;
 
 import static org.junit.Assert.*;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import dehtwgSEMinesweeperModels.Cell.cellState;
+
 public class FieldTest {
 
 	Field a;
+	BufferedImage  TestIcons;
 	
 	@Before
 	public void initialize() throws IOException{
+		TestIcons =ImageIO.read(new File("Icons.gif"));
+		
 		a = new Field(1, 1);
 		assertNotNull(a);
 		
@@ -25,11 +34,21 @@ public class FieldTest {
 	}
 	
 	
-	public void clickCellTest() {
-		assertTrue(a.clickCell(1, 1));//case no bomb
-		a.getCells()[1][1].setBomb(true);
-		assertTrue(!a.clickCell(1, 1));//case bomb
-		a.getCells()[1][1].setBomb(false);//reset for later tests
+	public void clickCellTest() throws IOException {
+		//a.getCells()[1][1].setBomb(false);
+		
+		assertTrue(a.clickCell(1, 1));
+		assertTrue(a.getCells()[1][1].getState() == cellState.open);
+		for(int i = 0; i < 1; i++){
+			for(int o = 0; o < 1; o ++){
+				if(a.getCells()[i][o].hasBomb()){
+					assertTrue(a.getCells()[i][o].getPresentIcon() == TestIcons.getSubimage(20, 20, 20, 20));
+				}
+				
+			}
+		}
+		//a.getCells()[1][1].setBomb(true);
+		//assertTrue(!a.clickCell(1, 1));
 	}
 	
 	

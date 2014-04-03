@@ -52,7 +52,7 @@ public class Field {
 			return false;
 		}
 		
-		/*open only the selected cell*/
+		/*cell did not inherit a bomb so we only open the selected cell*/
 		cells[ROW][COL].setPresentIcon(cells[ROW][COL].getIcons().getSubimage(20, 0, 20, 20));
 		return true;
 	}
