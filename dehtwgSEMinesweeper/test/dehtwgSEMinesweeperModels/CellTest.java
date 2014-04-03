@@ -22,6 +22,8 @@ public class CellTest {
 		assertNotNull(a);
 	}
 	
+	
+	/*getters and setters*/
 	@Test
 	public void getStateTest() {
 		assertEquals(cellState.hidden, a.getState());
