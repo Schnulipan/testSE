@@ -25,6 +25,15 @@ public class FieldTest {
 	}
 	
 	
+	public void clickCellTest() {
+		assertTrue(a.clickCell(1, 1));//case no bomb
+		a.getCells()[1][1].setBomb(true);
+		assertTrue(!a.clickCell(1, 1));//case bomb
+		a.getCells()[1][1].setBomb(false);//reset for later tests
+	}
+	
+	
+	/*Getters and Setters*/
 	@Test
 	public void getCellsTest() {
 		assertNotNull(a.getCells());
