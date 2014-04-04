@@ -37,11 +37,6 @@ public class CellTest {
 	}
 	
 	@Test
-	public void getIconsTest(){
-		assertNotNull(a.getIcons());
-	}
-	
-	@Test
 	public void hasBombTest(){
 		a.setBomb(false);
 		assertFalse(a.hasBomb());
@@ -55,12 +50,6 @@ public class CellTest {
 		assertFalse(a.hasBomb());
 		a.setBomb(true);
 		assertTrue(a.hasBomb());
-	}
-	
-	@Test
-	public void getIconsMatrixTest(){
-		assertNotNull(Cell.getIconsMatrix());
-	}
-	
+	}	
 
 }

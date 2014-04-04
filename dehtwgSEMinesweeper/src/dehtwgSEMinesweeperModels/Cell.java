@@ -11,21 +11,7 @@ public class Cell {
 	/*CLASS VARIABLES -------------------------------*/
 	/*holds the states a cell can have*/
 	public static enum cellState {hidden, open, checked}
-	
-	/*holds all the possible images a cell can have*/
-	public static BufferedImage Icons;
-	{
-		Icons = ImageIO.read(new File("Icons.gif"));
-	}
-	public static BufferedImage[][] IconsMatrix;
 
-	{
-		IconsMatrix = new BufferedImage[2][2];
-		IconsMatrix[0][0] = Icons.getSubimage(0, 0, 20, 20);
-		IconsMatrix[0][1] = Icons.getSubimage(20, 0, 20, 20);
-		IconsMatrix[1][0] = Icons.getSubimage(0, 20, 20, 20);
-		IconsMatrix[1][1] = Icons.getSubimage(20, 20, 20, 20);
-	}
 	/*-----------------------------------------------*/
 	
 	
@@ -66,10 +52,6 @@ public class Cell {
 	public void setState(cellState state) {
 		this.state = state;
 	}
-
-	public BufferedImage getIcons() {
-		return Icons;
-	}
 	
 	public boolean hasBomb() {
 		return hasBomb;
@@ -77,10 +59,6 @@ public class Cell {
 
 	public void setBomb(boolean hasBomb) {
 		this.hasBomb = hasBomb;
-	}
-	
-	public static BufferedImage[][] getIconsMatrix() {
-		return IconsMatrix;
 	}
 	/*-------------------------------------------------------------------------------*/
 }

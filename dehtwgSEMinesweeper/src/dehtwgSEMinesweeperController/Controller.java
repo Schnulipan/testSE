@@ -1,18 +1,14 @@
 package dehtwgSEMinesweeperController;
 
-import dehtwgSEMinesweeperModels.Field;
-import dehtwgSEMinesweeperView.I_View;
+import java.util.Observable;
 
-public class Controller {
+import dehtwgSEMinesweeperModels.Field;
+
+public class Controller extends Observable{
 	
 	
 	private Field gameField;
-	private I_View view;
 	
-	public static void main(final String[] args){
-		
-		
-		
-	}
 
 }
+   
