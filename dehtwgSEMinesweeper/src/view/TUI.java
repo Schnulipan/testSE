@@ -1,8 +1,8 @@
-package dehtwgSEMinesweeperView;
+package view;
 
 import java.util.Observable;
 
-import dehtwgSEMinesweeperController.Controller;
+import controller.Controller;
 
 public class TUI implements I_View{
 	
@@ -14,9 +14,10 @@ public class TUI implements I_View{
 	
 	
 	/*CONSTRUCTOR--------------------------*/
-	public TUI()
+	public TUI(Controller c)
 	{
-		
+		this.controller = c;
+		c.addObserver(this);
 	}
 	/*-------------------------------------*/
 	

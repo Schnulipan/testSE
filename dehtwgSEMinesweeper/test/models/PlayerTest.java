@@ -1,4 +1,4 @@
-package dehtwgSEMinesweeperModels;
+package models;
 
 import static org.junit.Assert.*;
 

@@ -1,4 +1,4 @@
-package dehtwgSEMinesweeperView;
+package view;
 
 import java.util.Observer;
 

@@ -1,8 +1,8 @@
-package dehtwgSEMinesweeperModels;
+package models;
 
 import java.io.IOException;
 
-import dehtwgSEMinesweeperModels.Cell.cellState;
+import models.Cell.cellState;
 
 public class Field {
 	

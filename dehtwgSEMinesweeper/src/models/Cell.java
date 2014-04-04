@@ -1,4 +1,4 @@
-package dehtwgSEMinesweeperModels;
+package models;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -32,7 +32,7 @@ public class Cell {
 
 	/*CONSTRUCTOR-------*/
 	public Cell() throws IOException{
-		/*make sure the cell doesnt inherit a bomb*/
+		/*make sure the cell doesn't inherit a bomb*/
 		hasBomb = false;
 		
 		/*set the present state to hidden*/

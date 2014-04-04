@@ -1,4 +1,4 @@
-package dehtwgSEMinesweeperModels;
+package models;
 
 import java.awt.image.BufferedImage;
 

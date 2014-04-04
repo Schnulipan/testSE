@@ -1,8 +1,8 @@
-package dehtwgSEMinesweeperController;
+package controller;
 
 import java.util.Observable;
 
-import dehtwgSEMinesweeperModels.Field;
+import models.Field;
 
 public class Controller extends Observable{
 	

@@ -1,4 +1,4 @@
-package dehtwgSEMinesweeperModels;
+package models;
 
 import static org.junit.Assert.*;
 
@@ -7,10 +7,11 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import models.Cell;
+import models.Cell.cellState;
+
 import org.junit.Before;
 import org.junit.Test;
-
-import dehtwgSEMinesweeperModels.Cell.cellState;
 
 public class CellTest {
 	
