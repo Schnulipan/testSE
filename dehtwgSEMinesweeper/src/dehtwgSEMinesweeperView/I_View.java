@@ -1,6 +1,8 @@
 package dehtwgSEMinesweeperView;
 
-public interface I_View {
+import java.util.Observer;
+
+public interface I_View extends Observer{
 	
 	void showCell();
 	void showAllCells();

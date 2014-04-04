@@ -1,6 +1,7 @@
 package dehtwgSEMinesweeperController;
 
 import dehtwgSEMinesweeperModels.Field;
+import dehtwgSEMinesweeperView.I_View;
 
 public class Controller {
 	
