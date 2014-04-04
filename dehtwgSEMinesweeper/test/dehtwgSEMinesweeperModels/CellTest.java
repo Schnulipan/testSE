@@ -26,24 +26,14 @@ public class CellTest {
 	/*getters and setters*/
 	@Test
 	public void getStateTest() {
-		assertEquals(cellState.hidden, a.getState());
+		a.setState(cellState.checked);
+		assertEquals(cellState.checked, a.getState());
 	}
 	
 	@Test
 	public void setStateTest() {
 		a.setState(cellState.checked);
 		assertEquals(cellState.checked, a.getState());
-	}
-	
-	@Test
-	public void getPresentIconTest() {
-		assertNotNull(a.getPresentIcon());
-	}
-	
-	@Test
-	public void setPresentIconTest() throws IOException {
-		a.setPresentIcon(ImageIO.read(new File("Icons.gif")));
-		assertNotNull(a.getPresentIcon());
 	}
 	
 	@Test
@@ -65,6 +55,11 @@ public class CellTest {
 		assertFalse(a.hasBomb());
 		a.setBomb(true);
 		assertTrue(a.hasBomb());
+	}
+	
+	@Test
+	public void getIconsMatrixTest(){
+		assertNotNull(Cell.getIconsMatrix());
 	}
 	
 

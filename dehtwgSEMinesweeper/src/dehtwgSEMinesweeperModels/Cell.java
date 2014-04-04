@@ -13,8 +13,19 @@ public class Cell {
 	public static enum cellState {hidden, open, checked}
 	
 	/*holds all the possible images a cell can have*/
-	private static BufferedImage Icons;
-	{Icons = ImageIO.read(new File("Icons.gif"));}
+	public static BufferedImage Icons;
+	{
+		Icons = ImageIO.read(new File("Icons.gif"));
+	}
+	public static BufferedImage[][] IconsMatrix;
+
+	{
+		IconsMatrix = new BufferedImage[2][2];
+		IconsMatrix[0][0] = Icons.getSubimage(0, 0, 20, 20);
+		IconsMatrix[0][1] = Icons.getSubimage(20, 0, 20, 20);
+		IconsMatrix[1][0] = Icons.getSubimage(0, 20, 20, 20);
+		IconsMatrix[1][1] = Icons.getSubimage(20, 20, 20, 20);
+	}
 	/*-----------------------------------------------*/
 	
 	
@@ -24,11 +35,8 @@ public class Cell {
 	/*holds the cell´s state*/
 	private cellState state;
 	
-	/*hodls the actual icon of the cell*/
-	private BufferedImage presentIcon;
-	
 	/*tells if the Cell inherits a bomb*/
-	private boolean hasBomb = false;
+	private boolean hasBomb;
 	/*-------------------------------------------------------------------*/
 	
 
@@ -38,9 +46,8 @@ public class Cell {
 
 	/*CONSTRUCTOR-------*/
 	public Cell() throws IOException{
-		
-		/*sets the present icon to hidden*/
-		presentIcon = Icons.getSubimage(0,0,20,20);
+		/*make sure the cell doesnt inherit a bomb*/
+		hasBomb = false;
 		
 		/*set the present state to hidden*/
 		state = cellState.hidden;
@@ -60,14 +67,6 @@ public class Cell {
 		this.state = state;
 	}
 
-	public BufferedImage getPresentIcon() {
-		return presentIcon;
-	}
-
-	public void setPresentIcon(BufferedImage presentIcon) {
-		this.presentIcon = presentIcon;
-	}
-
 	public BufferedImage getIcons() {
 		return Icons;
 	}
@@ -78,6 +77,10 @@ public class Cell {
 
 	public void setBomb(boolean hasBomb) {
 		this.hasBomb = hasBomb;
+	}
+	
+	public static BufferedImage[][] getIconsMatrix() {
+		return IconsMatrix;
 	}
 	/*-------------------------------------------------------------------------------*/
 }

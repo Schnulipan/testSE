@@ -45,15 +45,13 @@ public class Field {
 			for(int i = 0; i < rows; i++){
 				for(int o = 0; o < cols; o++){
 					if(cells[i][o].hasBomb()){
-						cells[i][o].setPresentIcon(cells[i][o].getIcons().getSubimage(20, 20, 20, 20));
+						cells[i][o].setState(Cell.cellState.open);
 					}
 				}
 			}
 			return false;
 		}
 		
-		/*cell did not inherit a bomb so we only open the selected cell*/
-		cells[ROW][COL].setPresentIcon(cells[ROW][COL].getIcons().getSubimage(20, 0, 20, 20));
 		return true;
 	}
 	/*--------------------------------------*/

@@ -16,11 +16,9 @@ import dehtwgSEMinesweeperModels.Cell.cellState;
 public class FieldTest {
 
 	Field a;
-	BufferedImage  TestIcons;
 	
 	@Before
 	public void initialize() throws IOException{
-		TestIcons =ImageIO.read(new File("Icons.gif"));
 		
 		a = new Field(1, 1);
 		assertNotNull(a);
@@ -33,23 +31,21 @@ public class FieldTest {
 		}
 	}
 	
-	
+	@Test
 	public void clickCellTest() throws IOException {
-		//a.getCells()[1][1].setBomb(false);
+		a = new Field(1, 3);
+		a.getCells()[0][1].setBomb(true);
+		a.getCells()[0][2].setBomb(true);
+		assertTrue(a.clickCell(0, 0));
+		assertEquals(a.getCells()[0][0].getState(), Cell.cellState.open);
+		assertEquals(a.getCells()[0][1].getState(), Cell.cellState.hidden);
+		assertEquals(a.getCells()[0][2].getState(), Cell.cellState.hidden);
 		
-		assertTrue(a.clickCell(1, 1));
-		assertTrue(a.getCells()[1][1].getState() == cellState.open);
-		for(int i = 0; i < 1; i++){
-			for(int o = 0; o < 1; o ++){
-				if(a.getCells()[i][o].hasBomb()){
-					assertTrue(a.getCells()[i][o].getPresentIcon() == TestIcons.getSubimage(20, 20, 20, 20));
-				}
-				
-			}
+		assertFalse(a.clickCell(0, 1));
+		assertEquals(a.getCells()[0][0].getState(), Cell.cellState.open);
+		assertEquals(a.getCells()[0][1].getState(), Cell.cellState.open);
+		assertEquals(a.getCells()[0][2].getState(), Cell.cellState.open);
 		}
-		//a.getCells()[1][1].setBomb(true);
-		//assertTrue(!a.clickCell(1, 1));
-	}
 	
 	
 	/*Getters and Setters*/
@@ -63,7 +59,7 @@ public class FieldTest {
 		Cell[][] testcells= a.getCells();
 		Cell[][] newtestcells = new Cell[1][1];
 		a.setCells(newtestcells);
-		assertTrue(a.getCells()!=testcells);
+		assertNotSame(a.getCells(),testcells);
 	}
 	
 	@Test
@@ -76,7 +72,7 @@ public class FieldTest {
 		int testrows = a.getRows();
 		int newtestrows = 10;
 		a.setRows(newtestrows);
-		assertTrue(a.getRows()!=testrows);
+		assertNotSame(a.getRows(), testrows);
 		a.setRows(1);
 	}
 	
@@ -85,7 +81,7 @@ public class FieldTest {
 		int testcols = a.getCols();
 		int newtestcols = 10;
 		a.setCols(newtestcols);
-		assertTrue(a.getCols()!=testcols);
+		assertNotSame(a.getCols(),testcols);
 		a.setCols(1);
 	}
 	
