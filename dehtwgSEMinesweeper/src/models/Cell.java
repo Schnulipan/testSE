@@ -31,7 +31,7 @@ public class Cell {
 
 
 	/*CONSTRUCTOR-------*/
-	public Cell() throws IOException{
+	public Cell(){
 		/*make sure the cell doesn't inherit a bomb*/
 		hasBomb = false;
 		

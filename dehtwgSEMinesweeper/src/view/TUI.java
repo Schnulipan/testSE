@@ -14,8 +14,8 @@ public class TUI implements I_View{
 		icons = new char[4];
 		icons[0] = 'O';
 		icons[1] = ' ';
-		icons[0] = 'P';
-		icons[0] = 'X';		
+		icons[2] = 'P';
+		icons[3] = 'X';		
 	}
 	/*-----------------------*/
 	

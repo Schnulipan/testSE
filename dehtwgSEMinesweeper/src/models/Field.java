@@ -18,7 +18,7 @@ public class Field {
 	
 	
 	
-	/*CONSTRUCTOR-----------*/
+	/*CONSTRUCTOR-----------*/ /*PROBABLY WONT EVER BE USED*/
 	public Field(int ROW, int COL) throws IOException{
 		this.rows = ROW;
 		this.cols = COL;
@@ -54,8 +54,63 @@ public class Field {
 		
 		return true;
 	}
+	
+	
+	/*defines the fields size (how many cells are played with)*/
+	public void initialize(int ROW, int COL)
+	{
+		this.rows = ROW;
+		this.cols = COL;
+		
+		for(int i = 0; i < rows; i++){
+			for(int o = 0; o < cols; o++){
+				cells[i][o] = new Cell();
+			}
+		}
+	}	
 	/*--------------------------------------*/
 	
+	
+	
+	
+	/*PRIVATE METHODS----------------------------------------*/
+	private String segregateBombs(int bombPercentage)
+	{
+		int absoluteSize = rows*cols;
+		int absoluteBombs;
+		
+		/*check if the user has chosen a wrong bombPercentage*/
+		if((bombPercentage > 100) || (bombPercentage < 0)){
+			String ret = "The percentage - how many Cells will inherit a bomb needs to be a value between 100 and 0!! not " + bombPercentage;
+			return ret;
+		}
+		
+		absoluteBombs = absoluteSize * bombPercentage/100;
+		System.out.println(absoluteBombs + "\t amount of Bombs - message comes from Field-class - segregateBombs");/*TODO this is only for testing! delete this line!!!!!!!!!*/
+		
+		int b = 0; /*stores the bamount of bombs that have already been placed*/
+		while(b > 0)
+		{
+			for(int i = 0; i < rows; i++){
+				for(int o = 0; o < cols; o++){
+					if(!cells[i][o].hasBomb()){
+						/*TODO this needs to be a random decision!!!!*/
+						if(true){
+							cells[i][o].setBomb(true);
+							b--;
+						}
+					}
+				}
+			}
+			
+		}
+		
+		return "DONE!";
+		
+				
+		
+	}
+	/*-------------------------------------------------------*/
 	
 	
 	
