@@ -2,9 +2,22 @@ package view;
 
 import java.util.Observable;
 
+import models.Cell;
+import models.Field;
 import controller.Controller;
 
 public class TUI implements I_View{
+	
+	/*CLASS VARIABLES--------*/
+	private static char[] icons;
+	{
+		icons = new char[4];
+		icons[0] = 'O';
+		icons[1] = ' ';
+		icons[0] = 'P';
+		icons[0] = 'X';		
+	}
+	/*-----------------------*/
 	
 	/*INSTANCE VARIABLES----------*/
 	private Controller controller;
@@ -31,14 +44,41 @@ public class TUI implements I_View{
 	}
 
 	@Override
-	public void showCell() {
-		// TODO Auto-generated method stub
+	public void showCell(Cell c) {
+		Cell.cellState state = c.getState();
 		
+		/*decide what will be printed - dependent on the cell´s state*/
+		switch(state)
+		{
+		case open:
+			if(c.hasBomb()){
+				System.out.println("X");
+				break;
+			}
+			System.out.print(" ");
+			break;
+		case hidden:
+			System.out.print("O");
+			break;
+		case checked:
+			System.out.print("P");
+			break;
+		}
 	}
 
 	@Override
-	public void showAllCells() {
-		// TODO Auto-generated method stub
+	public void showAllCells(Field f) {
+		int row = f.getRows();
+		int col = f.getCols();
+		Cell[][] c = f.getCells();
+		
+		/*print out all the cells*/
+		for(int i = 0; i < row; i++){
+			for(int o = 0; o < col; o++){
+				showCell(c[i][o]);
+			}
+			System.out.println();/*this will begin a new line*/
+		}
 		
 	}
 	/*------------------------------------------------------------*/

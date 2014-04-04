@@ -7,6 +7,9 @@ import java.util.Observable;
 
 import javax.imageio.ImageIO;
 
+import models.Cell;
+import models.Field;
+
 public class GUI implements I_View{
 	
 	
@@ -41,16 +44,16 @@ public class GUI implements I_View{
 	}
 
 	@Override
-	public void showCell() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void showAllCells() {
+	public void showAllCells(Field f) {
 		// TODO Auto-generated method stub
 		
 	}
 	/*------------------------------------------------------------*/
+
+	@Override
+	public void showCell(Cell c) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
