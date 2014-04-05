@@ -6,6 +6,7 @@ import java.util.Scanner;
 import models.Cell;
 import models.Field;
 import controller.Controller;
+import controller.Controller.GAMESTATE;
 
 public class TUI implements I_View{
 	
@@ -59,7 +60,12 @@ public class TUI implements I_View{
 				break;
 			}
 			else{
-				System.out.print(" ");
+				if(c.getInTouchWith() > 0){
+					System.out.print(c.getInTouchWith());
+				}
+				else{
+					System.out.print(" ");
+				}
 				break;
 			}
 			
@@ -123,7 +129,7 @@ public class TUI implements I_View{
 				System.out.println("Bomb-Percentage: ");
 			}
 			
-		}while(!controller.field.segregateBombs(bombpercentage, errorMessage));
+		}while(!controller.segregateBombs(bombpercentage, errorMessage));
 		
 		
 		System.out.println("Thank you!\nHave Fun playing!");
@@ -133,9 +139,11 @@ public class TUI implements I_View{
 	
 	@Override
 	public void tellPlayer(String s) {
+		System.out.println();
 		System.out.println("|---------------------------------|");
 		System.out.println(s);
 		System.out.println("|---------------------------------|");
+		System.out.println();
 	}
 
 
@@ -147,7 +155,7 @@ public class TUI implements I_View{
 	}
 	
 	@Override
-	public void demandClick() {
+	public GAMESTATE demandClick() {
 		int row = -1, col = -1;
 		System.out.println("");
 		System.out.println("Please enter which cell you´d like to click");
@@ -162,7 +170,7 @@ public class TUI implements I_View{
 			if((col = scanner.nextInt()) < 0){System.out.println("Value needs to be higher than 0 and lower than " + controller.field.getCols());}
 		}
 		
-		controller.calculateClick(row, col);		
+		return controller.clickCell(row, col);		
 	}
 	/*------------------------------------------------------------*/
 

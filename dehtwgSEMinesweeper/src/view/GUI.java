@@ -7,6 +7,8 @@ import java.util.Observable;
 
 import javax.imageio.ImageIO;
 
+import controller.Controller.GAMESTATE;
+
 import models.Cell;
 import models.Field;
 
@@ -75,7 +77,8 @@ public class GUI implements I_View{
 	}
 	
 	@Override
-	public void demandClick() {
+	public GAMESTATE demandClick() {
+		return GAMESTATE.lost;
 		// TODO Auto-generated method stub
 		
 	}

@@ -33,22 +33,6 @@ public class FieldTest {
 		}
 	}
 	
-	@Test
-	public void clickCellTest() throws IOException {
-		a = new Field(1, 3);
-		a.getCells()[0][1].setBomb(true);
-		a.getCells()[0][2].setBomb(true);
-		assertTrue(a.clickCell(0, 0));
-		assertEquals(a.getCells()[0][0].getState(), Cell.cellState.open);
-		assertEquals(a.getCells()[0][1].getState(), Cell.cellState.hidden);
-		assertEquals(a.getCells()[0][2].getState(), Cell.cellState.hidden);
-		
-		assertFalse(a.clickCell(0, 1));
-		assertEquals(a.getCells()[0][0].getState(), Cell.cellState.open);
-		assertEquals(a.getCells()[0][1].getState(), Cell.cellState.open);
-		assertEquals(a.getCells()[0][2].getState(), Cell.cellState.open);
-		}
-	
 	
 	@Test
 	public void initializeTest()
@@ -61,42 +45,7 @@ public class FieldTest {
 	}
 	
 	
-	@Test
-	public void segregateBombsTest()
-	{
-		a = new Field(2,2);
-		String out = null;
-		assertFalse(a.segregateBombs(200, out));
-		assertFalse(a.segregateBombs(-1, out));
-		
-		assertTrue(a.segregateBombs(1, out));
-		
-		
-		a = new Field(2,2);
-		assertTrue(a.segregateBombs(50, out));
-		
-		int check =0;
-		for(int i = 0; check != 2; i++)
-		{
-			if(i == a.getRows()-1){i = 0;}
-			for(int o = 0; check != 2; o++)
-			{
-				if(o == a.getCols()-1){i = 0;}
-				if(a.getCells()[i][o].hasBomb())
-				{
-					assertTrue(a.getCells()[i][o].hasBomb());
-					check++;
-				}
-				else
-				{
-					assertFalse(a.getCells()[i][o].hasBomb());
-				}
-			}
-		}
-		
-		assertEquals(2, check);
-		
-	}
+	
 	
 	
 	/*Getters and Setters*/

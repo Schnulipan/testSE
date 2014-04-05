@@ -15,8 +15,13 @@ public class Cell {
 	/*holds the cell´s state*/
 	private cellState state;
 	
+	
+
 	/*tells if the Cell inherits a bomb*/
 	private boolean hasBomb;
+	
+	/*how many bombs is this cell touching?*/
+	private int inTouchWith;
 	/*-------------------------------------------------------------------*/
 	
 
@@ -36,8 +41,6 @@ public class Cell {
 
 
 
-
-
 	/*GETTERS AND SETTERS------------------------------------------------------------*/
 	public cellState getState() {
 		return state;
@@ -53,6 +56,14 @@ public class Cell {
 
 	public void setBomb(boolean hasBomb) {
 		this.hasBomb = hasBomb;
+	}
+	
+	public int getInTouchWith() {
+		return inTouchWith;
+	}
+
+	public void incrementTouch() {
+		this.inTouchWith++;
 	}
 	/*-------------------------------------------------------------------------------*/
 }
