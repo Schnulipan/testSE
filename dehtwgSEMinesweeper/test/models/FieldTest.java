@@ -50,6 +50,39 @@ public class FieldTest {
 		}
 	
 	
+	@Test
+	public void initializeTest()
+	{
+		a = new Field();
+		a.initialize(1,1);
+		
+		assertNotNull(a.getCells());
+		assertNotNull(a.getCells()[0][0]);
+	}
+	
+	
+	@Test
+	public void segregateBombsTest()
+	{
+		a = new Field(2,2);
+		String out = null;
+		assertFalse(a.segregateBombs(200, out));
+		assertFalse(a.segregateBombs(-1, out));
+		
+		assertTrue(a.segregateBombs(1, out));
+		
+		
+		a = new Field(2,2);
+		assertTrue(a.segregateBombs(50, out));
+				
+		assertTrue(a.getCells()[0][0].hasBomb());
+		assertTrue(a.getCells()[0][1].hasBomb());
+		assertFalse(a.getCells()[1][0].hasBomb());
+		assertFalse(a.getCells()[1][1].hasBomb());
+		
+	}
+	
+	
 	/*Getters and Setters*/
 	@Test
 	public void getCellsTest() {

@@ -1,6 +1,8 @@
 package models;
 
-import java.io.IOException;
+
+import java.util.Date;
+import java.util.Random;
 
 import models.Cell.cellState;
 
@@ -19,7 +21,10 @@ public class Field {
 	
 	
 	/*CONSTRUCTOR-----------*/ /*PROBABLY WONT EVER BE USED*/
-	public Field(int ROW, int COL) throws IOException{
+	/*standard constructor*/
+	public Field(){}
+	
+	public Field(int ROW, int COL){
 		this.rows = ROW;
 		this.cols = COL;
 		
@@ -29,6 +34,8 @@ public class Field {
 				cells[i][o] = new Cell();
 		}
 	}
+	
+	
 	/*----------------------*/
 	
 	
@@ -61,6 +68,7 @@ public class Field {
 	{
 		this.rows = ROW;
 		this.cols = COL;
+		this.cells = new Cell[ROW][COL];
 		
 		for(int i = 0; i < rows; i++){
 			for(int o = 0; o < cols; o++){
@@ -74,38 +82,48 @@ public class Field {
 	
 	
 	/*PRIVATE METHODS----------------------------------------*/
-	private String segregateBombs(int bombPercentage)
+	public boolean segregateBombs(int bombPercentage, String out)
 	{
 		int absoluteSize = rows*cols;
 		int absoluteBombs;
+		Random rand = new Random();
+		rand.setSeed(new Date().getTime());
 		
 		/*check if the user has chosen a wrong bombPercentage*/
 		if((bombPercentage > 100) || (bombPercentage < 0)){
-			String ret = "The percentage - how many Cells will inherit a bomb needs to be a value between 100 and 0!! not " + bombPercentage;
-			return ret;
+			out = "The percentage - how many Cells will inherit a bomb needs to be a value between 100 and 0!! not " + bombPercentage;
+			return false;
 		}
 		
+		/*calculate percentual part of bombs*/
 		absoluteBombs = absoluteSize * bombPercentage/100;
+		/*if by percentage, there should be less than 1 bomb, place at least 1 bomb*/
+		if(absoluteBombs < 1)
+		{
+			absoluteBombs = 1;
+		}
+		
 		System.out.println(absoluteBombs + "\t amount of Bombs - message comes from Field-class - segregateBombs");/*TODO this is only for testing! delete this line!!!!!!!!!*/
 		
 		int b = 0; /*stores the bamount of bombs that have already been placed*/
-		while(b > 0)
+		while(b < absoluteBombs)
 		{
-			for(int i = 0; i < rows; i++){
-				for(int o = 0; o < cols; o++){
+			for(int i = 0; i < this.rows; i++){
+				for(int o = 0; o < this.cols; o++){
 					if(!cells[i][o].hasBomb()){
 						/*TODO this needs to be a random decision!!!!*/
-						if(true){
+						if((rand.nextInt(2) == 0) && (b < absoluteBombs)){
 							cells[i][o].setBomb(true);
-							b--;
+							System.out.println("cell[" + i + "][" + o + "] inherits a bomb  -  only for testing  - comes from Field - segregateBombs");
+							b++;
 						}
 					}
 				}
 			}
 			
 		}
-		
-		return "DONE!";
+		out = "DONE!";
+		return true;
 		
 				
 		

@@ -13,7 +13,7 @@ public class Controller extends Observable{
 	
 	
 	/*INSTANCE VARIABLES-------------*/
-	private Field field;
+	public Field field;
 	/*-------------------------------*/
 	
 	
