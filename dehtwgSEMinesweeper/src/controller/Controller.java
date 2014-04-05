@@ -7,7 +7,6 @@ import models.Field;
 public class Controller extends Observable{
 	
 	/*CLASS VARIABLES -----*/
-	public static boolean gameStart = false; /*maybe will be useful*/
 	public static boolean gameRunning = false; /*definitely will be useful*/
 	/*---------------------*/
 	
@@ -27,9 +26,12 @@ public class Controller extends Observable{
 	
 	
 	/*PUBLIC METHODS----------------------------------------*/
-	public void runGameLoop()
+	public void calculateClick(int ROW, int COL)
 	{
-		while(!gameStart){}//while the user has not 
+		
+		field.clickCell(ROW, COL);
+		
+		
 	}
 	/*------------------------------------------------------*/
 

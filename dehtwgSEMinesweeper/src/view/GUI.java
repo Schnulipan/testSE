@@ -44,16 +44,45 @@ public class GUI implements I_View{
 	}
 
 	@Override
-	public void showAllCells(Field f) {
+	public void showAllCells() {
 		// TODO Auto-generated method stub
 		
 	}
-	/*------------------------------------------------------------*/
+	
 
 	@Override
 	public void showCell(Cell c) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void demandPlayerInstructions() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void tellPlayer(String s) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void welcomePlayer() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void demandClick() {
+		// TODO Auto-generated method stub
+		
+	}
+	/*------------------------------------------------------------*/
+
+	
+
+	
 
 }

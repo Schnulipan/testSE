@@ -103,7 +103,7 @@ public class Field {
 			absoluteBombs = 1;
 		}
 		
-		System.out.println(absoluteBombs + "\t amount of Bombs - message comes from Field-class - segregateBombs");/*TODO this is only for testing! delete this line!!!!!!!!!*/
+		System.out.println(absoluteBombs + " -> amount of Bombs - message comes from Field-class - segregateBombs");/*TODO this is only for testing! delete this line!!!!!!!!!*/
 		
 		int b = 0; /*stores the bamount of bombs that have already been placed*/
 		while(b < absoluteBombs)
@@ -111,7 +111,6 @@ public class Field {
 			for(int i = 0; i < this.rows; i++){
 				for(int o = 0; o < this.cols; o++){
 					if(!cells[i][o].hasBomb()){
-						/*TODO this needs to be a random decision!!!!*/
 						if((rand.nextInt(2) == 0) && (b < absoluteBombs)){
 							cells[i][o].setBomb(true);
 							System.out.println("cell[" + i + "][" + o + "] inherits a bomb  -  only for testing  - comes from Field - segregateBombs");

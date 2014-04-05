@@ -1,6 +1,7 @@
 package view;
 
 import java.util.Observable;
+import java.util.Scanner;
 
 import models.Cell;
 import models.Field;
@@ -21,6 +22,7 @@ public class TUI implements I_View{
 	
 	/*INSTANCE VARIABLES----------*/
 	private Controller controller;
+	private Scanner scanner;
 	
 	/*----------------------------*/
 	
@@ -31,6 +33,7 @@ public class TUI implements I_View{
 	{
 		this.controller = c;
 		c.addObserver(this);
+		scanner = new Scanner(System.in);
 	}
 	/*-------------------------------------*/
 	
@@ -39,7 +42,7 @@ public class TUI implements I_View{
 	/*INHERITED METHODS ------------------------------------------*/
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
+		showAllCells();
 		
 	}
 
@@ -52,11 +55,14 @@ public class TUI implements I_View{
 		{
 		case open:
 			if(c.hasBomb()){
-				System.out.println("X");
+				System.out.print("X");
 				break;
 			}
-			System.out.print(" ");
-			break;
+			else{
+				System.out.print(" ");
+				break;
+			}
+			
 		case hidden:
 			System.out.print("O");
 			break;
@@ -67,10 +73,10 @@ public class TUI implements I_View{
 	}
 
 	@Override
-	public void showAllCells(Field f) {
-		int row = f.getRows();
-		int col = f.getCols();
-		Cell[][] c = f.getCells();
+	public void showAllCells() {
+		int row = controller.field.getRows();
+		int col = controller.field.getCols();
+		Cell[][] c = controller.field.getCells();
 		
 		/*print out all the cells*/
 		for(int i = 0; i < row; i++){
@@ -81,5 +87,94 @@ public class TUI implements I_View{
 		}
 		
 	}
+	
+	
+	@Override
+	public void demandPlayerInstructions() {
+		int row = 0, col = 0, bombpercentage = 0;
+		System.out.println("Please insert the field size!");
+		while(row<=0)
+		{
+			System.out.println("Rows: ");
+			if((row = scanner.nextInt()) <=0 )
+			{
+				System.out.println("Value needs to be higher than 0!");
+			}
+			
+		}
+		while(col<=0)
+		{
+			System.out.println("Cols: ");
+			if((col = scanner.nextInt()) <=0 )
+			{
+				System.out.println("Value needs to be higher than 0!");
+			}
+			
+		}
+		controller.field.initialize(row, col);
+		String errorMessage = null;
+		System.out.println("Bomb-Percentage: ");
+		
+		do{
+			
+			if((bombpercentage = scanner.nextInt()) <=0 )
+			{
+				System.out.println(errorMessage);
+				System.out.println("Bomb-Percentage: ");
+			}
+			
+		}while(!controller.field.segregateBombs(bombpercentage, errorMessage));
+		
+		
+		System.out.println("Thank you!\nHave Fun playing!");
+
+		
+	}
+	
+	@Override
+	public void tellPlayer(String s) {
+		System.out.println("|---------------------------------|");
+		System.out.println(s);
+		System.out.println("|---------------------------------|");
+	}
+
+
+
+	@Override
+	public void welcomePlayer() {
+		System.out.println("Welcome to Minesweeper!");
+		
+	}
+	
+	@Override
+	public void demandClick() {
+		int row = -1, col = -1;
+		System.out.println("");
+		System.out.println("Please enter which cell you´d like to click");
+		while(row < 0 || row > controller.field.getRows())
+		{
+			System.out.println("Row: ");
+			if((row = scanner.nextInt()) < 0){System.out.println("Value needs to be higher than 0 and lower than " + controller.field.getRows());}
+		}
+		while(col < 0 || col > controller.field.getCols())
+		{
+			System.out.println("Col: ");
+			if((col = scanner.nextInt()) < 0){System.out.println("Value needs to be higher than 0 and lower than " + controller.field.getCols());}
+		}
+		
+		controller.calculateClick(row, col);		
+	}
 	/*------------------------------------------------------------*/
+
+
+
+	
+
+
+
+	
+
+
+
+	
 }
