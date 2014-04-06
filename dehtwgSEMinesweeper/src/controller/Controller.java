@@ -109,16 +109,38 @@ public class Controller extends Observable{
 				}
 			}
 			return GAMESTATE.lost;
+		}else
+		{
+			System.out.println("freefields left: "+freeFieldsLeft);
+			/*decrement the amount of freefields-variable - if 0 -> the player has won*/
+			if(--freeFieldsLeft == 0){
+				return GAMESTATE.won;
+			}
+			/*open all cells, that have no bomb contact and touch the recently clicked cell*/
+			for(int a = ROW-1; a < ROW+2; a++){
+				for(int b = COL-1;b < COL+2; b++){
+					if(cellIsInField(a, b)){
+						if(!field.getCells()[a][b].hasBomb()){
+							if(field.getCells()[a][b].getState() != cellState.open){
+								if(field.getCells()[a][b].getInTouchWith() == 0){
+									clickCell(a, b);
+								}
+								else{
+									field.getCells()[a][b].setState(cellState.open);
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 		
-		System.out.println("freefields left : " + freeFieldsLeft);
-		if(--freeFieldsLeft == 0){return GAMESTATE.won;}
 		return GAMESTATE.running;
 	}
 	
 	
 	/*checks if a cell lays between 0 and the row- and col size*/
-	private boolean cellIsInField(int row, int col)
+	public boolean cellIsInField(int row, int col)
 	{
 		if(row < field.getRows() && row >= 0){
 			if(col < field.getCols() && col >= 0){

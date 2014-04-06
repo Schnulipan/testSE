@@ -30,18 +30,23 @@ public class ControllerTest {
 	
 	@Test
 	public void clickCellTest() throws IOException {
-		c.field = new Field(1, 3);
+		c.field = new Field(3, 3);
 		c.field.getCells()[0][1].setBomb(true);
 		c.field.getCells()[0][2].setBomb(true);
 		assertTrue(c.clickCell(0, 0) == GAMESTATE.running);
 		assertEquals(c.field.getCells()[0][0].getState(), Cell.cellState.open);
-		assertEquals(c.field.getCells()[0][1].getState(), Cell.cellState.hidden);
-		assertEquals(c.field.getCells()[0][2].getState(), Cell.cellState.hidden);
 		
 		assertFalse(c.clickCell(0, 1) == GAMESTATE.running);
 		assertEquals(c.field.getCells()[0][0].getState(), Cell.cellState.open);
 		assertEquals(c.field.getCells()[0][1].getState(), Cell.cellState.open);
 		assertEquals(c.field.getCells()[0][2].getState(), Cell.cellState.open);
+		
+		
+		c.field = new Field(1,2);
+		c.segregateBombs(1, new String());
+		c.field.getCells()[0][0].setBomb(true);
+		c.field.getCells()[0][1].setBomb(false);
+		assertEquals(GAMESTATE.won, c.clickCell(0, 1));
 		}
 	
 	
@@ -80,6 +85,16 @@ public class ControllerTest {
 		}
 		assertEquals(2, check);
 		
+	}
+	
+	
+	@Test
+	public void cellIsInFieldTest()
+	{
+		c.field = new Field(1,1);
+		assertFalse(c.cellIsInField(-1, -1));
+		assertFalse(c.cellIsInField(0, -1));
+		assertTrue(c.cellIsInField(0, 0));
 	}
 
 }

@@ -85,11 +85,21 @@ public class TUI implements I_View{
 		Cell[][] c = controller.field.getCells();
 		
 		/*print out all the cells*/
+		System.out.println();
+		for(int x = 0; x < row+1;x++){
+			System.out.print("_");
+		}
+		System.out.println();
 		for(int i = 0; i < row; i++){
+			System.out.print("|");
 			for(int o = 0; o < col; o++){
 				showCell(c[i][o]);
 			}
+			System.out.print("|");
 			System.out.println();/*this will begin a new line*/
+		}
+		for(int x = 0; x < row+1;x++){
+			System.out.print("_");
 		}
 		
 	}
