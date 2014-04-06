@@ -68,9 +68,9 @@ public class Controller extends Observable{
 							/*give the cell a bomb*/
 							cells[i][o].setBomb(true);
 							
-							/*tell the fields arround, that they´re touching a bomb*/
-							for(int a = i-1; a < i+1; a++){
-								for(int x = o-1; x < o+1; x++){
+							/*tell the fields arround, that they´re touching a bomb on more bomb*/
+							for(int a = (i-1); a < (i+2); a++){
+								for(int x = (o-1); x < (o+2); x++){
 									if(cellIsInField(a, x)){
 										cells[a][x].incrementTouch();
 									}
