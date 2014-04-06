@@ -126,6 +126,9 @@ public class Controller extends Observable{
 								}
 								else{
 									field.getCells()[a][b].setState(cellState.open);
+									if(--freeFieldsLeft == 0){
+										return GAMESTATE.won;
+									}
 								}
 							}
 						}
