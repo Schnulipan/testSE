@@ -86,11 +86,17 @@ public class TUI implements I_View{
 		
 		/*print out all the cells*/
 		System.out.println();
-		for(int x = 0; x < row+1;x++){
+		System.out.print("  ");
+		for(int x = 0; x < row;x++){
+			System.out.print(x);
+		}
+		System.out.println();
+		for(int x = 0; x < row+2;x++){
 			System.out.print("_");
 		}
 		System.out.println();
 		for(int i = 0; i < row; i++){
+			System.out.print(i);
 			System.out.print("|");
 			for(int o = 0; o < col; o++){
 				showCell(c[i][o]);
@@ -98,7 +104,7 @@ public class TUI implements I_View{
 			System.out.print("|");
 			System.out.println();/*this will begin a new line*/
 		}
-		for(int x = 0; x < row+1;x++){
+		for(int x = 0; x < row+2;x++){
 			System.out.print("_");
 		}
 		

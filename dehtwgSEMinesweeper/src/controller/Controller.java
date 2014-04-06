@@ -64,7 +64,7 @@ public class Controller extends Observable{
 			for(int i = 0; i < field.getRows(); i++){
 				for(int o = 0; o < field.getCols(); o++){
 					if(!cells[i][o].hasBomb()){
-						if((rand.nextInt(2) == 0) && (b < absoluteBombs)){
+						if((rand.nextInt(absoluteSize) == 0) && (b < absoluteBombs)){
 							/*give the cell a bomb*/
 							cells[i][o].setBomb(true);
 							
@@ -77,7 +77,6 @@ public class Controller extends Observable{
 								}
 							}
 							
-							System.out.println("cell[" + i + "][" + o + "] inherits a bomb  -  only for testing  - comes from Field - segregateBombs");
 							if(++b >= absoluteBombs){
 								i = field.getRows();
 								o = field.getCols();
