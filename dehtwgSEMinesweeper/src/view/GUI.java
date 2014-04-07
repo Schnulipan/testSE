@@ -82,7 +82,16 @@ public class GUI implements I_View{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
+	@Override
+	public boolean demandTryAgain() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	/*------------------------------------------------------------*/
+
+	
 
 	
 

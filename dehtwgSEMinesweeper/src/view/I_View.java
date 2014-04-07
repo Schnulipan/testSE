@@ -9,10 +9,11 @@ import models.Field;
 
 public interface I_View extends Observer{
 	
-	void tellPlayer(String s);
 	void welcomePlayer();
+	void tellPlayer(String s);
 	void demandPlayerInstructions();
 	GAMESTATE demandClick();
+	boolean demandTryAgain();
 	
 	void showCell(Cell c);
 	void showAllCells();
