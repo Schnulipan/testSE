@@ -36,6 +36,8 @@ public class Cell {
 		
 		/*set the present state to hidden*/
 		state = cellState.hidden;
+		
+		inTouchWith = 0;
 	}
 	/*------------------*/
 

@@ -14,6 +14,8 @@ public class Minesweeper {
 	static GAMESTATE gamestate = GAMESTATE.running;
 	public static boolean contin = true;
 	
+	public static String errMessage = null;
+	
 	
 	public static void main(final String[] args)
 	{
@@ -36,12 +38,17 @@ public class Minesweeper {
 			if(gamestate == GAMESTATE.lost)
 			{
 				view.tellPlayer("Sorry! You just lost the game!");
+				contin = view.demandTryAgain();
+			}
+			else if(gamestate == GAMESTATE.quit){
+				view.tellPlayer("okay then... bye");
 			}
 			else{
 				view.tellPlayer("CONGRATULATIONS YOU WON!!!!");
+				contin = view.demandTryAgain();
 			}
 			
-			contin = view.demandTryAgain();
+			
 
 		}
 		

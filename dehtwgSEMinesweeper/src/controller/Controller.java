@@ -11,7 +11,7 @@ import models.Field;
 public class Controller extends Observable{
 	
 	/*CLASS VARIABLES -----*/
-	public static enum GAMESTATE {lost, won, running}
+	public static enum GAMESTATE {lost, won, running, quit}
 	public static boolean gameRunning = false; /*definitely will be useful*/
 	/*---------------------*/
 	
@@ -94,10 +94,20 @@ public class Controller extends Observable{
 	
 	/*clicks a cell ad returns false if a bomb was clicked or true if the game goes on*/
 	public GAMESTATE clickCell(int ROW, int COL){
+		
+		/*if the cell has already been clicked, we can return immediately*/
+		if(field.getCells()[ROW][COL].getState() == cellState.open){
+			return GAMESTATE.running;
+		}
+		/*if the cell is marked as a bomb we also do nothing*/
+		if(field.getCells()[ROW][COL].getState() == cellState.checked){
+			return GAMESTATE.running;
+		}
 
+		/*else we open the cell*/
 		field.getCells()[ROW][COL].setState(cellState.open);
 		
-		/*first check if the selected cell inherits a bomb*/
+		/*then check if the selected cell inherits a bomb*/
 		if(field.getCells()[ROW][COL].hasBomb()){			
 			/*the player has lost and now we will open all bombs*/
 			for(int i = 0; i < field.getRows(); i++){
@@ -110,24 +120,27 @@ public class Controller extends Observable{
 			return GAMESTATE.lost;
 		}else
 		{
-			System.out.println("freefields left: "+freeFieldsLeft);
+			/*otherwise*/
 			/*decrement the amount of freefields-variable - if 0 -> the player has won*/
 			if(--freeFieldsLeft == 0){
 				return GAMESTATE.won;
 			}
-			/*open all cells, that have no bomb contact and touch the recently clicked cell*/
+			
+			/*open all cells, that have no bomb contact and touch the recently clicked cell - DOESNT WORK YET*/
 			for(int a = ROW-1; a < ROW+2; a++){
 				for(int b = COL-1;b < COL+2; b++){
-					if(cellIsInField(a, b)){
-						if(!field.getCells()[a][b].hasBomb()){
-							if(field.getCells()[a][b].getState() != cellState.open){
-								if(field.getCells()[a][b].getInTouchWith() == 0){
-									clickCell(a, b);
-								}
-								else{
-									field.getCells()[a][b].setState(cellState.open);
-									if(--freeFieldsLeft == 0){
-										return GAMESTATE.won;
+					if( ((a!=ROW) && (b == COL)) || ((a == ROW && (b != COL)))) {
+						if(cellIsInField(a, b)){
+							if(!field.getCells()[a][b].hasBomb()){
+								if(field.getCells()[a][b].getState() == cellState.hidden){
+									if(field.getCells()[a][b].getInTouchWith() == 0){
+										clickCell(a, b);
+									}
+									else{
+										field.getCells()[a][b].setState(cellState.open);
+										if(--freeFieldsLeft == 0){
+											return GAMESTATE.won;
+										}
 									}
 								}
 							}
@@ -138,6 +151,17 @@ public class Controller extends Observable{
 		}
 		
 		return GAMESTATE.running;
+	}
+	
+	
+	public void markCell(int ROW, int COL){
+		if(field.getCells()[ROW][COL].getState() == cellState.checked){
+			field.getCells()[ROW][COL].setState(cellState.hidden);
+		}else if(field.getCells()[ROW][COL].getState() == cellState.open){
+		/*do nothing*/
+		}else{
+			field.getCells()[ROW][COL].setState(cellState.checked);
+		}
 	}
 	
 	

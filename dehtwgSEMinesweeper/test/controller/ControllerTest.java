@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import models.Cell;
 import models.Field;
+import models.Cell.cellState;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -33,7 +34,11 @@ public class ControllerTest {
 		c.field = new Field(3, 3);
 		c.field.getCells()[0][1].setBomb(true);
 		c.field.getCells()[0][2].setBomb(true);
-		assertTrue(c.clickCell(0, 0) == GAMESTATE.running);
+		assertEquals(GAMESTATE.running, c.clickCell(0, 0));
+		assertEquals(GAMESTATE.running, c.clickCell(0, 0));
+		c.markCell(0, 1);
+		assertEquals(GAMESTATE.running, c.clickCell(0, 1));
+		c.markCell(0, 1);
 		assertEquals(c.field.getCells()[0][0].getState(), Cell.cellState.open);
 		
 		assertFalse(c.clickCell(0, 1) == GAMESTATE.running);
@@ -47,7 +52,46 @@ public class ControllerTest {
 		c.field.getCells()[0][0].setBomb(true);
 		c.field.getCells()[0][1].setBomb(false);
 		assertEquals(GAMESTATE.won, c.clickCell(0, 1));
+		
+		c = new Controller(new Field(2, 2));
+		c.segregateBombs(1, new String());
+		if(c.field.getCells()[0][0].hasBomb()){
+			assertEquals(GAMESTATE.won, c.clickCell(1, 1));
 		}
+		if(c.field.getCells()[0][1].hasBomb()){
+			assertEquals(GAMESTATE.won, c.clickCell(1, 0));
+		}
+		if(c.field.getCells()[1][0].hasBomb()){
+			assertEquals(GAMESTATE.won, c.clickCell(0, 1));
+		}
+		if(c.field.getCells()[1][1].hasBomb()){
+			assertEquals(GAMESTATE.won, c.clickCell(0, 0));
+		}
+	}
+	
+	
+	@Test
+	public void markCellTest(){
+		a = new Field(2, 2);
+		c = new Controller(a);
+		
+		c.segregateBombs(1, new String());
+		if(c.field.getCells()[0][0].hasBomb()){
+			c.markCell(0, 0);
+			assertEquals(cellState.checked, c.field.getCells()[0][0].getState());
+			c.markCell(0, 0);
+			assertEquals(cellState.hidden, c.field.getCells()[0][0].getState());
+			
+			if(!c.field.getCells()[0][0].hasBomb()){
+				c.clickCell(0, 0);
+				assertEquals(cellState.open, c.field.getCells()[0][0].getState());
+			}else{
+				c.field.getCells()[0][1].setState(cellState.hidden);
+				c.clickCell(0, 1);
+				assertEquals(cellState.open, c.field.getCells()[0][1].getState());
+			}
+		}
+	}
 	
 	
 	@Test

@@ -174,19 +174,45 @@ public class TUI implements I_View{
 	public GAMESTATE demandClick() {
 		int row = -1, col = -1;
 		System.out.println("");
-		System.out.println("Please enter which cell you´d like to click");
-		while(row < 0 || row > controller.field.getRows())
-		{
-			System.out.println("Row: ");
-			if((row = scanner.nextInt()) < 0){System.out.println("Value needs to be higher than 0 and lower than " + controller.field.getRows());}
+		System.out.println("what would you like to do?\nclick a cell(c)\nmark a cell(m)\nquit(q)");
+		switch(scanner.next().charAt(0)){
+		case 'c':
+			System.out.println("Please enter which cell you´d like to click");
+			while(row < 0 || row > controller.field.getRows())
+			{
+				System.out.println("Row: ");
+				if((row = scanner.nextInt()) < 0){System.out.println("Value needs to be higher than 0 and lower than " + controller.field.getRows());}
+			}
+			while(col < 0 || col > controller.field.getCols())
+			{
+				System.out.println("Col: ");
+				if((col = scanner.nextInt()) < 0){System.out.println("Value needs to be higher than 0 and lower than " + controller.field.getCols());}
+			}
+			
+			return controller.clickCell(row, col);
+			
+		case 'm':
+			System.out.println("Please enter which cell you´d like to mark");
+			while(row < 0 || row > controller.field.getRows())
+			{
+				System.out.println("Row: ");
+				if((row = scanner.nextInt()) < 0){System.out.println("Value needs to be higher than 0 and lower than " + controller.field.getRows());}
+			}
+			while(col < 0 || col > controller.field.getCols())
+			{
+				System.out.println("Col: ");
+				if((col = scanner.nextInt()) < 0){System.out.println("Value needs to be higher than 0 and lower than " + controller.field.getCols());}
+			}
+			controller.markCell(row, col);
+			return GAMESTATE.running;
+			
+			
+		case 'q':
+			return GAMESTATE.quit;
+		default:
+			return GAMESTATE.running;			
 		}
-		while(col < 0 || col > controller.field.getCols())
-		{
-			System.out.println("Col: ");
-			if((col = scanner.nextInt()) < 0){System.out.println("Value needs to be higher than 0 and lower than " + controller.field.getCols());}
-		}
-		
-		return controller.clickCell(row, col);		
+				
 	}
 	
 	

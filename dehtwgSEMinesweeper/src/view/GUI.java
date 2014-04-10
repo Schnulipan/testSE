@@ -1,18 +1,23 @@
 package view;
 
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Observable;
 
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
+import controller.Controller;
 import controller.Controller.GAMESTATE;
 
 import models.Cell;
 import models.Field;
 
-public class GUI implements I_View{
+public class GUI extends JFrame implements I_View {
 	
 	
 	/*CLASS VARIABLES --------*/
@@ -23,7 +28,7 @@ public class GUI implements I_View{
 		try {
 			Icons = ImageIO.read(new File("Icons.gif"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			tellPlayer("Internal Error - couldn´t find Icons.gif");
 			e.printStackTrace();
 		}
 	}
@@ -31,14 +36,42 @@ public class GUI implements I_View{
 
 	{
 		IconsMatrix = new BufferedImage[2][2];
-		IconsMatrix[0][0] = Icons.getSubimage(0, 0, 20, 20);
-		IconsMatrix[0][1] = Icons.getSubimage(20, 0, 20, 20);
-		IconsMatrix[1][0] = Icons.getSubimage(0, 20, 20, 20);
-		IconsMatrix[1][1] = Icons.getSubimage(20, 20, 20, 20);
+		IconsMatrix[0][0] = Icons.getSubimage(0, 0, 20, 20);/*hidden*/
+		IconsMatrix[0][1] = Icons.getSubimage(20, 0, 20, 20);/*open*/
+		IconsMatrix[1][0] = Icons.getSubimage(0, 20, 20, 20);/*checked*/
+		IconsMatrix[1][1] = Icons.getSubimage(20, 20, 20, 20);/*bomb*/
 	}
 	/*------------------------*/
 	
-	/*INHERITED METHODS ------------------------------------------*/
+	
+	
+	
+	/*INSTANCE VARIABLES---------------*/
+	/*Controller*/
+	private Controller c;
+	/*JPANELS*/
+	private JPanel gamePanel;
+
+	/*---------------------------------*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*CONSTRUCTOR-------------------------*/
+	public GUI(int ROW, int COL, Controller CON){
+		c = CON;
+	}
+	/*------------------------------------*/
+	
+	
+	
+	
+	/*INHERITED METHODS ------------------------------------------*/	
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
