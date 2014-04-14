@@ -19,7 +19,7 @@ public class Controller extends Observable{
 	/*INSTANCE VARIABLES-------------*/
 	public Field field;
 	public int freeFieldsLeft;
-	/*-------------------------------*/
+	/*-------------------------------*/  
 	
 	
 	/*CONSTRUCTOR------------------------------*/
