@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -13,7 +14,6 @@ import javax.swing.JPanel;
 
 import controller.Controller;
 import controller.Controller.GAMESTATE;
-
 import models.Cell;
 import models.Field;
 
@@ -51,7 +51,6 @@ public class GUI extends JFrame implements I_View {
 	private Controller c;
 	/*JPANELS*/
 	private JPanel gamePanel;
-
 	/*---------------------------------*/
 	
 	
@@ -63,7 +62,13 @@ public class GUI extends JFrame implements I_View {
 	
 	
 	/*CONSTRUCTOR-------------------------*/
-	public GUI(int ROW, int COL, Controller CON){
+	public GUI(Controller CON){
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setResizable(false);
+		this.setSize(new Dimension(600, 600));
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
+		
 		c = CON;
 	}
 	/*------------------------------------*/
@@ -71,10 +76,15 @@ public class GUI extends JFrame implements I_View {
 	
 	
 	
+	
+	
+	
+	
+	
 	/*INHERITED METHODS ------------------------------------------*/	
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
+		showAllCells();
 		
 	}
 
@@ -93,7 +103,7 @@ public class GUI extends JFrame implements I_View {
 
 	@Override
 	public void demandPlayerInstructions() {
-		// TODO Auto-generated method stub
+		this.getContentPane().add(new menuPanel(this, c));
 		
 	}
 	

@@ -114,7 +114,6 @@ public class ControllerTest {
 			{
 				for(int o = 0; o<c.field.getCols(); o++)
 				{
-					System.out.println("bearbeite cell["+i+"]["+o+"] - only for testing -- comes from ControllerTest - segregateBombs");
 					if(c.field.getCells()[i][o].hasBomb())
 					{
 						assertTrue(c.field.getCells()[i][o].hasBomb());

@@ -1,6 +1,7 @@
 package main;
 
 import models.Field;
+import view.GUI;
 import view.I_View;
 import view.TUI;
 import controller.Controller;
@@ -11,7 +12,7 @@ public class Minesweeper {
 
 	private static Controller controller;
 	private static I_View view;
-	static GAMESTATE gamestate = GAMESTATE.running;
+	static GAMESTATE gamestate;
 	public static boolean contin = true;
 	
 	public static String errMessage = null;
@@ -25,10 +26,11 @@ public class Minesweeper {
 		while(contin){
 			contin = false;
 			controller = new Controller(new Field());
-			view = new TUI(controller);
+			view = new GUI(controller);
 			
 			view.welcomePlayer();
 			view.demandPlayerInstructions();
+			gamestate = GAMESTATE.running;
 			
 			
 			while((gamestate = view.demandClick()) == GAMESTATE.running);
