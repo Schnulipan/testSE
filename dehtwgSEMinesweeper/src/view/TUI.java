@@ -35,6 +35,8 @@ public class TUI implements I_View{
 		this.controller = c;
 		c.addObserver(this);
 		scanner = new Scanner(System.in);
+		
+		controller.addObserver(this);
 	}
 	/*-------------------------------------*/
 	

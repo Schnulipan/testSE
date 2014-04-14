@@ -68,7 +68,7 @@ public class Controller extends Observable{
 							/*give the cell a bomb*/
 							cells[i][o].setBomb(true);
 							
-							/*tell the fields arround, that they´re touching a bomb on more bomb*/
+							/*tell the fields arround, that they´re touching one more bomb*/
 							for(int a = (i-1); a < (i+2); a++){
 								for(int x = (o-1); x < (o+2); x++){
 									if(cellIsInField(a, x)){
@@ -88,11 +88,13 @@ public class Controller extends Observable{
 			}
 			
 		}
+		setChanged();
+		notifyObservers();
 		out = "DONE!";
 		return true;
 	}
 	
-	/*clicks a cell ad returns false if a bomb was clicked or true if the game goes on*/
+	/*clicks a cell and returns false if a bomb was clicked or true if the game goes on*/
 	public GAMESTATE clickCell(int ROW, int COL){
 		
 		/*if the cell has already been clicked, we can return immediately*/
@@ -150,7 +152,10 @@ public class Controller extends Observable{
 			}
 		}
 		
+		setChanged();
+		notifyObservers();
 		return GAMESTATE.running;
+		
 	}
 	
 	
@@ -162,6 +167,8 @@ public class Controller extends Observable{
 		}else{
 			field.getCells()[ROW][COL].setState(cellState.checked);
 		}
+		setChanged();
+		notifyObservers();
 	}
 	
 	

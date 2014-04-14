@@ -30,9 +30,8 @@ public class Minesweeper {
 			view.welcomePlayer();
 			view.demandPlayerInstructions();
 			
-			do{
-				view.showAllCells();/*TODO das sollte durch das observerpattern im controller geregelt werden...*/
-			}while((gamestate = view.demandClick()) == GAMESTATE.running);
+			
+			while((gamestate = view.demandClick()) == GAMESTATE.running);
 			
 			view.showAllCells();
 			if(gamestate == GAMESTATE.lost)
