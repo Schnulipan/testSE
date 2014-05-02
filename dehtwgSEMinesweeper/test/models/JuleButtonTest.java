@@ -35,8 +35,7 @@ public class JuleButtonTest {
 		jb.setYcoordinate(3);
 		assertEquals(3, jb.getYcoordinate());  
 		
-		assertEquals(2, jb.getXcoordinate());
-		assertEquals(2, jb.getYcoordinate());
+		assertEquals(3, jb.getYcoordinate());
 	}
 
 }
