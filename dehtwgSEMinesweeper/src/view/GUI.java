@@ -40,7 +40,6 @@ public class GUI extends JFrame implements I_View, ActionListener {
 			Icons = ImageIO.read(new File("Icons.gif"));
 		} catch (IOException e) {
 			tellPlayer("Internal Error - couldn´t find Icons.gif");
-			e.printStackTrace();
 		}
 	}
 	public static BufferedImage[][] IconsMatrix;
@@ -190,7 +189,6 @@ public class GUI extends JFrame implements I_View, ActionListener {
 			try {
 				menu.wait();
 			} catch (InterruptedException e) {
-				e.printStackTrace();
 			}
 		}
 		remove(menu);
@@ -215,7 +213,6 @@ public class GUI extends JFrame implements I_View, ActionListener {
 			smiley = new JButton(new ImageIcon(ImageIO.read(new File(
 					"smiley.png"))));
 		} catch (IOException e) {
-			e.printStackTrace();
 		}
 
 		int row, col;
@@ -264,7 +261,6 @@ public class GUI extends JFrame implements I_View, ActionListener {
 			try {
 				this.wait();
 			} catch (InterruptedException e) {
-				e.printStackTrace();
 			}
 		}
 
@@ -278,7 +274,6 @@ public class GUI extends JFrame implements I_View, ActionListener {
 			try {
 				smiley.wait();
 			} catch (InterruptedException e) {
-				e.printStackTrace();
 			}
 		}
 		return tryagain;
