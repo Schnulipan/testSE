@@ -94,7 +94,7 @@ public class GUI extends JFrame implements I_View, ActionListener {
 		c.addObserver(this);
 
 		this.setTitle("Minesweeper by Julian");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setResizable(true);
 
 	}
