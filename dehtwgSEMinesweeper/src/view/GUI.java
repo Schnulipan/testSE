@@ -180,7 +180,7 @@ public class GUI extends JFrame implements I_View, ActionListener {
 	@Override
 	public void demandPlayerInstructions() {
 
-		this.setSize(400, 400);
+		this.setSize(200, 200);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		menuPanel menu;
