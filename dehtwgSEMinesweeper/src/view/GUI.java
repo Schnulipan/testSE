@@ -73,7 +73,7 @@ public class GUI extends JFrame implements I_View, ActionListener {
 	private JPanel cellPanel; /* will hold the cells */
 
 	/* JLabels */
-	private JLabel LfreeFields;
+	private JLabel LfreeFields = new JLabel("Free Fields Left: ");
 
 	/* JTextFields */
 
@@ -169,7 +169,6 @@ public class GUI extends JFrame implements I_View, ActionListener {
 		LfreeFields.setText("Free Fields Left: " + c.freeFieldsLeft);
 		// validate();//quasi repaint();...ist nicht mal nötig...
 		setVisible(true);
-
 	}
 
 	@Override
@@ -197,7 +196,7 @@ public class GUI extends JFrame implements I_View, ActionListener {
 		remove(menu);
 		validate();
 		this.setSize(new Dimension(c.field.getRows() * 20,
-				c.field.getCols() * 25));
+				c.field.getCols() * 20+100));
 		// setExtendedState(MAXIMIZED_BOTH);
 
 		/* initialize the visual gamefield */
@@ -207,9 +206,6 @@ public class GUI extends JFrame implements I_View, ActionListener {
 				buttonCells[i][o] = new JuleButton(i, o);
 				buttonCells[i][o].setIcon(new ImageIcon(IconsMatrix[0][0]));
 				buttonCells[i][o].addActionListener(this);
-				buttonCells[i][o].setSize(30, 30);
-				buttonCells[i][o].setFont(new Font("Arial",
-						Font.HANGING_BASELINE, 10));
 			}
 		}
 
@@ -233,13 +229,14 @@ public class GUI extends JFrame implements I_View, ActionListener {
 		}
 		smiley.addActionListener(this);
 
-		statPanel.add(LfreeFields = new JLabel("Free Fields left: "
-				+ c.freeFieldsLeft));
+		statPanel.add(LfreeFields = new JLabel("Free Fields left: "	+ c.freeFieldsLeft));
+		
 		statPanel.add(smiley);
 		gamePanel.add(statPanel, BorderLayout.NORTH);
 		gamePanel.add(cellPanel, BorderLayout.CENTER);
 		this.add(gamePanel);
 		setVisible(true);
+		System.out.println("vor showAllcells in demandPlayerInstructions");
 		showAllCells();
 		validate();
 
@@ -277,7 +274,15 @@ public class GUI extends JFrame implements I_View, ActionListener {
 
 	@Override
 	public boolean demandTryAgain() {
-		return false;
+		
+		synchronized (smiley){
+			try {
+				smiley.wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		return tryagain;
 	}
 
 	/*------------------------------------------------------------*/
@@ -292,6 +297,9 @@ public class GUI extends JFrame implements I_View, ActionListener {
 
 		if (event == smiley) {
 			tryagain = true;
+			synchronized(smiley){
+				smiley.notify();
+			}
 		} else {
 			if (nextClickpermitted) {
 				for (int i = 0; i < row; i++) {

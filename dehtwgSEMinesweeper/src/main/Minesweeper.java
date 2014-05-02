@@ -32,7 +32,6 @@ public class Minesweeper {
 			view.demandPlayerInstructions();
 			gamestate = GAMESTATE.running;
 			
-			
 			while((gamestate = view.demandClick()) == GAMESTATE.running);
 			
 			view.showAllCells();
@@ -48,11 +47,6 @@ public class Minesweeper {
 				view.tellPlayer("CONGRATULATIONS YOU WON!!!!");
 				contin = view.demandTryAgain();
 			}
-			
-			
-
 		}
-		
 	}
-
 }
