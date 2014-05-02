@@ -236,7 +236,6 @@ public class GUI extends JFrame implements I_View, ActionListener {
 		gamePanel.add(cellPanel, BorderLayout.CENTER);
 		this.add(gamePanel);
 		setVisible(true);
-		System.out.println("vor showAllcells in demandPlayerInstructions");
 		showAllCells();
 		validate();
 
