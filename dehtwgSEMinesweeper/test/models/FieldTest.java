@@ -55,35 +55,10 @@ public class FieldTest {
 	}
 	
 	@Test
-	public void setCellsTest() {
-		Cell[][] testcells= a.getCells();
-		Cell[][] newtestcells = new Cell[1][1];
-		a.setCells(newtestcells);
-		assertNotSame(a.getCells(),testcells);
-	}
-	
-	@Test
 	public void getRowsTest() {
 		assertNotNull(a.getRows());
 	}
-	
-	@Test
-	public void setRowsTest() {
-		int testrows = a.getRows();
-		int newtestrows = 10;
-		a.setRows(newtestrows);
-		assertNotSame(a.getRows(), testrows);
-		a.setRows(1);
-	}
-	
-	@Test
-	public void setColsTest() {
-		int testcols = a.getCols();
-		int newtestcols = 10;
-		a.setCols(newtestcols);
-		assertNotSame(a.getCols(),testcols);
-		a.setCols(1);
-	}
+
 	
 	@Test
 	public void getColsTest() {
