@@ -111,13 +111,15 @@ public class GUI extends JFrame implements I_View, ActionListener {
 
 	@Override
 	public void showAllCells() {
-
+		/*iterate through all the cells*/
 		for (int i = 0; i < c.field.getRows(); i++) {
 			for (int o = 0; o < c.field.getCols(); o++) {
+				/*if the cell is open show its value or the bomb that it inherits*/
 				if (c.field.getCells()[i][o].getState() == cellState.open) {
 					if (c.field.getCells()[i][o].hasBomb()) {
 						buttonCells[i][o].setIcon(new ImageIcon(
 								IconsMatrix[1][1]));
+					/*cell doesnt inherit a bomb so if it touches a bomb show the right value*/
 					} else {
 						int touch = c.field.getCells()[i][o].getInTouchWith();
 						if (touch > 0) {
@@ -157,6 +159,7 @@ public class GUI extends JFrame implements I_View, ActionListener {
 
 							}
 						} else {
+							/*cell is open but doesnt touch a bomb*/
 							buttonCells[i][o].setIcon(new ImageIcon(
 									IconsMatrix[0][1]));
 						}
@@ -165,6 +168,9 @@ public class GUI extends JFrame implements I_View, ActionListener {
 				}/*else -> cell is not open*/ 
 				else if (c.field.getCells()[i][o].getState() == cellState.checked) {
 					buttonCells[i][o].setIcon(new ImageIcon(IconsMatrix[1][0]));
+				}
+				else if(c.field.getCells()[i][o].getState() == cellState.hidden){
+					buttonCells[i][o].setIcon(new ImageIcon(IconsMatrix[0][0]));
 				}
 			}
 		}

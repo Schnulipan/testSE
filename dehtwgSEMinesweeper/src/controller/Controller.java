@@ -88,8 +88,6 @@ public class Controller extends Observable{
 			}
 			
 		}
-		setChanged();
-		notifyObservers();
 		out = "DONE!";
 		return true;
 	}
@@ -162,9 +160,7 @@ public class Controller extends Observable{
 	public void markCell(int ROW, int COL){
 		if(field.getCells()[ROW][COL].getState() == cellState.checked){
 			field.getCells()[ROW][COL].setState(cellState.hidden);
-		}else if(field.getCells()[ROW][COL].getState() == cellState.open){
-		/*do nothing*/
-		}else{
+		}else if(field.getCells()[ROW][COL].getState() == cellState.hidden){
 			field.getCells()[ROW][COL].setState(cellState.checked);
 		}
 		setChanged();
