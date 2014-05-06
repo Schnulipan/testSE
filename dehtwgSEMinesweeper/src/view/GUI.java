@@ -46,7 +46,7 @@ public class GUI extends JFrame implements I_View, ActionListener {
 		}
 	}
 	public static BufferedImage[][] IconsMatrix;
-
+ 
 	{
 		IconsMatrix = new BufferedImage[6][2];
 		IconsMatrix[0][0] = Icons.getSubimage(0, 0, 20, 20);/* hidden */
