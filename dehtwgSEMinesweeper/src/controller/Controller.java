@@ -30,7 +30,6 @@ public class Controller extends Observable{
 	}
 	/*-----------------------------------------*/
 	
-	
 	/*PUBLIC METHODS----------------------------------------*/
 	
 	
@@ -126,7 +125,7 @@ public class Controller extends Observable{
 				return GAMESTATE.won;
 			}
 			
-			/*open all cells, that have no bomb contact and touch the recently clicked cell - DOESNT WORK YET*/
+			/*open all cells, that have no bomb contact and touch the recently clicked cell*/
 			for(int a = ROW-1; a < ROW+2; a++){
 				for(int b = COL-1;b < COL+2; b++){
 					if( ((a!=ROW) && (b == COL)) || ((a == ROW && (b != COL)))) {
