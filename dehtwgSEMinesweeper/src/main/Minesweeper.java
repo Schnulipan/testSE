@@ -3,7 +3,6 @@ package main;
 import models.Field;
 import view.GUI;
 import view.I_View;
-import view.TUI;
 import controller.Controller;
 import controller.Controller.GAMESTATE;
 

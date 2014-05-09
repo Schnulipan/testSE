@@ -1,16 +1,9 @@
 package models;
 
 import static org.junit.Assert.*;
-
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
-
-import models.Cell;
 import models.Field;
-import models.Cell.cellState;
 
 import org.junit.Before;
 import org.junit.Test;

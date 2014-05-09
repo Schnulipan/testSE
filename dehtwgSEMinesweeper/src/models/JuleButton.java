@@ -4,6 +4,12 @@ package models;
 
 public class JuleButton extends javax.swing.JButton{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
 	/*Instance Variables-----------*/
 	private int xcoordinate, ycoordinate;
 	/*-----------------------------*/

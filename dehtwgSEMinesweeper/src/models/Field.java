@@ -1,11 +1,5 @@
 package models;
 
-
-import java.util.Date;
-import java.util.Random;
-
-import models.Cell.cellState;
-
 public class Field {
 	
 	/*INSTANCEVARIABLES--------------------------*/

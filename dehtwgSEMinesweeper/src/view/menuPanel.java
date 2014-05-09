@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Event;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,6 +17,11 @@ import controller.Controller;
 
 public class menuPanel extends JPanel implements ActionListener, DocumentListener{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/*ParentFrame*/
 	JFrame parent;
 	
@@ -124,12 +128,8 @@ public class menuPanel extends JPanel implements ActionListener, DocumentListene
 	@Override
 	public void changedUpdate(DocumentEvent arg0) {
 		
-		int row = 0;
-		int col = 0;
-		int bombP = 0;
 		
 		try{
-			row = Integer.parseInt(textRow.getText());
 			if(Integer.parseInt(textRow.getText()) < 1){
 				JOptionPane.showMessageDialog(this, "Rows need to be higher than 0!");
 				textRow.setText("10");
@@ -139,7 +139,6 @@ public class menuPanel extends JPanel implements ActionListener, DocumentListene
 			this.textRow.setText("10");
 		}
 		try{
-			col = Integer.parseInt(textCol.getText());
 			if(Integer.parseInt(textCol.getText()) < 1){
 				JOptionPane.showMessageDialog(this, "Cols need to be higher than 0!");
 				textCol.setText("10");
@@ -149,7 +148,6 @@ public class menuPanel extends JPanel implements ActionListener, DocumentListene
 			this.textCol.setText("10");
 		}
 		try{
-			bombP = Integer.parseInt(textBombs.getText());
 			if(Integer.parseInt(textBombs.getText()) < 1){
 				JOptionPane.showMessageDialog(this, "Bomb Percentage need to be higher than 0!");
 				textBombs.setText("10");
@@ -169,12 +167,9 @@ public class menuPanel extends JPanel implements ActionListener, DocumentListene
 
 	@Override
 	public void insertUpdate(DocumentEvent arg0) {
-		int row = 0;
-		int col = 0;
-		int bombP = 0;
+
 		
 		try{
-			row = Integer.parseInt(textRow.getText());
 			if(Integer.parseInt(textRow.getText()) < 1){
 				JOptionPane.showMessageDialog(this, "Rows need to be higher than 0!");
 				textRow.setText("10");
@@ -184,7 +179,6 @@ public class menuPanel extends JPanel implements ActionListener, DocumentListene
 			this.textRow.setText("10");
 		}
 		try{
-			col = Integer.parseInt(textCol.getText());
 			if(Integer.parseInt(textCol.getText()) < 1){
 				JOptionPane.showMessageDialog(this, "Cols need to be higher than 0!");
 				textCol.setText("10");
@@ -194,7 +188,6 @@ public class menuPanel extends JPanel implements ActionListener, DocumentListene
 			this.textCol.setText("10");
 		}
 		try{
-			bombP = Integer.parseInt(textBombs.getText());
 			if(Integer.parseInt(textBombs.getText()) < 1){
 				JOptionPane.showMessageDialog(this, "Bomb Percentage need to be higher than 0!");
 				textBombs.setText("10");

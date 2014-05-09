@@ -4,7 +4,6 @@ import java.util.Observable;
 import java.util.Scanner;
 
 import models.Cell;
-import models.Field;
 import controller.Controller;
 import controller.Controller.GAMESTATE;
 
