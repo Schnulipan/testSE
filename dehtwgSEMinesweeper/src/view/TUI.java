@@ -148,7 +148,7 @@ public class TUI implements I_View{
 			
 		}while(!controller.segregateBombs(bombpercentage, errorMessage));
 		
-		
+		showAllCells();
 		System.out.println("Thank you!\nHave Fun playing!");
 
 		

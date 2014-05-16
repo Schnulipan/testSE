@@ -85,14 +85,31 @@ public class Controller extends Observable{
 					}
 				}
 			}
-			
 		}
 		out = "DONE!";
 		return true;
 	}
 	
+	public GAMESTATE clickCell(int row, int col){
+		GAMESTATE retVal = clickCellR(row, col);
+		setChanged();
+		notifyObservers();
+		return retVal;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/*clicks a cell and returns false if a bomb was clicked or true if the game goes on*/
-	public GAMESTATE clickCell(int ROW, int COL){
+	public GAMESTATE clickCellR(int ROW, int COL){
 		
 		/*if the cell has already been clicked, we can return immediately*/
 		if(field.getCells()[ROW][COL].getState() == cellState.open){
@@ -107,7 +124,7 @@ public class Controller extends Observable{
 		field.getCells()[ROW][COL].setState(cellState.open);
 		
 		/*then check if the selected cell inherits a bomb*/
-		if(field.getCells()[ROW][COL].hasBomb()){			
+		if(field.getCells()[ROW][COL].hasBomb()){
 			/*the player has lost and now we will open all bombs*/
 			for(int i = 0; i < field.getRows(); i++){
 				for(int o = 0; o < field.getCols(); o++){
@@ -133,7 +150,7 @@ public class Controller extends Observable{
 							if(!field.getCells()[a][b].hasBomb()){
 								if(field.getCells()[a][b].getState() == cellState.hidden){
 									if(field.getCells()[a][b].getInTouchWith() == 0){
-										clickCell(a, b);
+										clickCellR(a, b);
 									}
 									else{
 										field.getCells()[a][b].setState(cellState.open);
@@ -148,9 +165,6 @@ public class Controller extends Observable{
 				}
 			}
 		}
-		
-		setChanged();
-		notifyObservers();
 		return GAMESTATE.running;
 		
 	}
