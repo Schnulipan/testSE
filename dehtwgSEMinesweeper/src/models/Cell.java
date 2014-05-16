@@ -1,5 +1,7 @@
 package models;
 
+import models.models.CellState;
+
 public class Cell {
 
 	/*CLASS VARIABLES -------------------------------*/
@@ -15,6 +17,8 @@ public class Cell {
 	/*holds the cell´s state*/
 	private cellState state;
 	
+	
+	private CellState cState;
 	
 
 	/*tells if the Cell inherits a bomb*/
