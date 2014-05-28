@@ -33,40 +33,7 @@ import models.JuleButton;
 public class GUI extends JFrame implements I_View, ActionListener {
 
 	/* CLASS VARIABLES -------- */
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	/* holds all the possible images a cell can have */
-	public static BufferedImage Icons;
-	{
-		try {
-			Icons = ImageIO.read(new File("Icons.gif"));
-		} catch (IOException e) {
-			tellPlayer("Internal Error - couldn´t find Icons.gif");
-		}
-	}
-	public static BufferedImage[][] IconsMatrix;
- 
-	{
-		IconsMatrix = new BufferedImage[6][2];
-		IconsMatrix[0][0] = Icons.getSubimage(0, 0, 20, 20);/* hidden */
-		IconsMatrix[0][1] = Icons.getSubimage(20, 0, 20, 20);/* open */
-		IconsMatrix[1][0] = Icons.getSubimage(0, 20, 20, 20);/* checked */
-		IconsMatrix[1][1] = Icons.getSubimage(20, 20, 20, 20);/* bomb */
-
-		IconsMatrix[2][0] = Icons.getSubimage(0, 40, 20, 20);/* 1 */
-		IconsMatrix[2][1] = Icons.getSubimage(20, 40, 20, 20);/* 2 */
-		IconsMatrix[3][0] = Icons.getSubimage(0, 60, 20, 20);/* 3 */
-		IconsMatrix[3][1] = Icons.getSubimage(20, 60, 20, 20);/* 4 */
-		IconsMatrix[4][0] = Icons.getSubimage(0, 80, 20, 20);/* 5 */
-		IconsMatrix[4][1] = Icons.getSubimage(20, 80, 20, 20);/* 6 */
-		IconsMatrix[5][0] = Icons.getSubimage(0, 100, 20, 20);/* 7 */
-		IconsMatrix[5][1] = Icons.getSubimage(20, 100, 20, 20);/* 8 */
-
-	}
-	/*------------------------*/
 
 	/* INSTANCE VARIABLES--------------- */
 	/* Controller */
@@ -116,64 +83,7 @@ public class GUI extends JFrame implements I_View, ActionListener {
 		/*iterate through all the cells*/
 		for (int i = 0; i < c.field.getRows(); i++) {
 			for (int o = 0; o < c.field.getCols(); o++) {
-				/*if the cell is open show its value or the bomb that it inherits*/
-				if (c.field.getCells()[i][o].getState() == cellState.open) {
-					if (c.field.getCells()[i][o].hasBomb()) {
-						buttonCells[i][o].setIcon(new ImageIcon(
-								IconsMatrix[1][1]));
-					/*cell doesnt inherit a bomb so if it touches a bomb show the right value*/
-					} else {
-						int touch = c.field.getCells()[i][o].getInTouchWith();
-						if (touch > 0) {
-							switch (touch) {
-							case 1:
-								buttonCells[i][o].setIcon(new ImageIcon(
-										IconsMatrix[2][0]));
-								break;
-							case 2:
-								buttonCells[i][o].setIcon(new ImageIcon(
-										IconsMatrix[2][1]));
-								break;
-							case 3:
-								buttonCells[i][o].setIcon(new ImageIcon(
-										IconsMatrix[3][0]));
-								break;
-							case 4:
-								buttonCells[i][o].setIcon(new ImageIcon(
-										IconsMatrix[3][1]));
-								break;
-							case 5:
-								buttonCells[i][o].setIcon(new ImageIcon(
-										IconsMatrix[4][0]));
-								break;
-							case 6:
-								buttonCells[i][o].setIcon(new ImageIcon(
-										IconsMatrix[4][1]));
-								break;
-							case 7:
-								buttonCells[i][o].setIcon(new ImageIcon(
-										IconsMatrix[5][0]));
-								break;
-							case 8:
-								buttonCells[i][o].setIcon(new ImageIcon(
-										IconsMatrix[5][1]));
-								break;
-
-							}
-						} else {
-							/*cell is open but doesnt touch a bomb*/
-							buttonCells[i][o].setIcon(new ImageIcon(
-									IconsMatrix[0][1]));
-						}
-					}
-
-				}/*else -> cell is not open*/ 
-				else if (c.field.getCells()[i][o].getState() == cellState.checked) {
-					buttonCells[i][o].setIcon(new ImageIcon(IconsMatrix[1][0]));
-				}
-				else if(c.field.getCells()[i][o].getState() == cellState.hidden){
-					buttonCells[i][o].setIcon(new ImageIcon(IconsMatrix[0][0]));
-				}
+				buttonCells[i][o].setIcon(new ImageIcon(c.field.getCells()[i][o].getCellState().getCellImage()));
 			}
 		}
 		LfreeFields.setText("Free Fields Left: " + c.freeFieldsLeft);
@@ -213,7 +123,7 @@ public class GUI extends JFrame implements I_View, ActionListener {
 		for (int i = 0; i < c.field.getRows(); i++) {
 			for (int o = 0; o < c.field.getCols(); o++) {
 				buttonCells[i][o] = new JuleButton(i, o);
-				buttonCells[i][o].setIcon(new ImageIcon(IconsMatrix[0][0]));
+				buttonCells[i][o].setIcon(new ImageIcon(Cell.IconsMatrix[0][0]));
 				buttonCells[i][o].addActionListener(this);
 				final int ii = new Integer(i);
 				final int oo = new Integer(o);

@@ -1,5 +1,11 @@
 package models;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 import models.models.I_CellState;
 
 public class Cell {
@@ -8,7 +14,37 @@ public class Cell {
 	/*holds the states a cell can have*/
 	public static enum cellState {hidden, open, checked}
 
-	/*-----------------------------------------------*/
+	
+
+	/* holds all the possible images a cell can have */
+	public static BufferedImage Icons;
+	{
+		try {
+			Icons = ImageIO.read(new File("Icons.gif"));
+		} catch (IOException e) {
+			System.out.println("Internal Error - couldn´t find Icons.gif");
+		}
+	}
+	public static BufferedImage[][] IconsMatrix;
+ 
+	{
+		IconsMatrix = new BufferedImage[6][2];
+		IconsMatrix[0][0] = Icons.getSubimage(0, 0, 20, 20);/* hidden */
+		IconsMatrix[0][1] = Icons.getSubimage(20, 0, 20, 20);/* open */
+		IconsMatrix[1][0] = Icons.getSubimage(0, 20, 20, 20);/* checked */
+		IconsMatrix[1][1] = Icons.getSubimage(20, 20, 20, 20);/* bomb */
+
+		IconsMatrix[2][0] = Icons.getSubimage(0, 40, 20, 20);/* 1 */
+		IconsMatrix[2][1] = Icons.getSubimage(20, 40, 20, 20);/* 2 */
+		IconsMatrix[3][0] = Icons.getSubimage(0, 60, 20, 20);/* 3 */
+		IconsMatrix[3][1] = Icons.getSubimage(20, 60, 20, 20);/* 4 */
+		IconsMatrix[4][0] = Icons.getSubimage(0, 80, 20, 20);/* 5 */
+		IconsMatrix[4][1] = Icons.getSubimage(20, 80, 20, 20);/* 6 */
+		IconsMatrix[5][0] = Icons.getSubimage(0, 100, 20, 20);/* 7 */
+		IconsMatrix[5][1] = Icons.getSubimage(20, 100, 20, 20);/* 8 */
+
+	}
+	/*------------------------*/
 	
 	
 	

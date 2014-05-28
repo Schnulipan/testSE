@@ -1,5 +1,7 @@
 package models.models;
 
+import java.awt.image.BufferedImage;
+
 import models.Cell;
 import controller.Controller;
 import controller.Controller.GAMESTATE;
@@ -36,6 +38,13 @@ public class CellStateChecked implements I_CellState{
 	@Override
 	public boolean isHidden() {
 		return false;
+	}
+
+
+
+	@Override
+	public BufferedImage getCellImage() {
+		return Cell.IconsMatrix[1][0];
 	}
 
 }

@@ -111,21 +111,25 @@ public class Controller extends Observable{
 	/*clicks a cell and returns false if a bomb was clicked or true if the game goes on*/
 	public GAMESTATE clickCellR(int ROW, int COL){
 		
-		/*if the cell has already been clicked, we can return immediately*/
+		return field.getCells()[ROW][COL].getCellState().click();
+		
+		
+		
+		/*if the cell has already been clicked, we can return immediately
 		if(field.getCells()[ROW][COL].getState() == cellState.open){
 			return GAMESTATE.running;
 		}
-		/*if the cell is marked as a bomb we also do nothing*/
+		/*if the cell is marked as a bomb we also do nothing
 		if(field.getCells()[ROW][COL].getState() == cellState.checked){
 			return GAMESTATE.running;
 		}
 
-		/*else we open the cell*/
+		/*else we open the cell
 		field.getCells()[ROW][COL].setState(cellState.open);
 		
-		/*check if the selected cell inherits a bomb*/
+		/*check if the selected cell inherits a bomb
 		if(field.getCells()[ROW][COL].hasBomb()){
-			/*the player has lost and now we will open all bombs*/
+			/*the player has lost and now we will open all bombs
 			for(int i = 0; i < field.getRows(); i++){
 				for(int o = 0; o < field.getCols(); o++){
 					if(field.getCells()[i][o].hasBomb()){
@@ -137,12 +141,12 @@ public class Controller extends Observable{
 		}else
 		{
 			/*otherwise*/
-			/*decrement the amount of freefields-variable - if 0 -> the player has won*/
+			/*decrement the amount of freefields-variable - if 0 -> the player has won
 			if(--freeFieldsLeft == 0){
 				return GAMESTATE.won;
 			}
 			
-			/*open all cells, that have no bomb contact and touch the recently clicked cell*/
+			/*open all cells, that have no bomb contact and touch the recently clicked cell
 			for(int a = ROW-1; a < ROW+2; a++){
 				for(int b = COL-1;b < COL+2; b++){
 					if( ((a!=ROW) && (b == COL)) || ((a == ROW && (b != COL)))) {
@@ -165,7 +169,7 @@ public class Controller extends Observable{
 				}
 			}
 		}
-		return GAMESTATE.running;
+		return GAMESTATE.running;*/
 		
 	}
 	
