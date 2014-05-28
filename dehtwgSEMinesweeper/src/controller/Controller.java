@@ -123,7 +123,7 @@ public class Controller extends Observable{
 		/*else we open the cell*/
 		field.getCells()[ROW][COL].setState(cellState.open);
 		
-		/*then check if the selected cell inherits a bomb*/
+		/*check if the selected cell inherits a bomb*/
 		if(field.getCells()[ROW][COL].hasBomb()){
 			/*the player has lost and now we will open all bombs*/
 			for(int i = 0; i < field.getRows(); i++){

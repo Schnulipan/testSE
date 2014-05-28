@@ -1,6 +1,6 @@
 package models;
 
-import models.models.CellState;
+import models.models.I_CellState;
 
 public class Cell {
 
@@ -14,11 +14,12 @@ public class Cell {
 	
 	
 	/*INSTACE VARIABLES--------------------------------------------------*/	
+	private int row, col;
+	
 	/*holds the cell´s state*/
 	private cellState state;
 	
-	
-	private CellState cState;
+	private I_CellState cState;
 	
 
 	/*tells if the Cell inherits a bomb*/
@@ -48,6 +49,22 @@ public class Cell {
 
 
 	/*GETTERS AND SETTERS------------------------------------------------------------*/
+	public void setCellState(I_CellState state){
+		cState = state;
+	}
+	public int getRow() {
+		return row;
+	}
+	public void setRow(int row) {
+		this.row = row;
+	}
+	public int getCol() {
+		return col;
+	}
+	public void setCol(int col) {
+		this.col = col;
+	}
+
 	public cellState getState() {
 		return state;
 	}
@@ -72,4 +89,10 @@ public class Cell {
 		this.inTouchWith++;
 	}
 	/*-------------------------------------------------------------------------------*/
+
+
+
+	public I_CellState getCellState() {
+		return cState;
+	}
 }
