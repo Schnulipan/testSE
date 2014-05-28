@@ -7,6 +7,7 @@ import java.io.IOException;
 import models.Cell;
 import models.Field;
 import models.Cell.cellState;
+import models.models.CellStateHidden;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -39,12 +40,12 @@ public class ControllerTest {
 		c.markCell(0, 1);
 		assertEquals(GAMESTATE.running, c.clickCellR(0, 1));
 		c.markCell(0, 1);
-		assertEquals(c.field.getCells()[0][0].getState(), Cell.cellState.open);
+		assertTrue(c.field.getCells()[0][0].getCellState().isOpen());
 		
 		assertFalse(c.clickCellR(0, 1) == GAMESTATE.running);
-		assertEquals(c.field.getCells()[0][0].getState(), Cell.cellState.open);
-		assertEquals(c.field.getCells()[0][1].getState(), Cell.cellState.open);
-		assertEquals(c.field.getCells()[0][2].getState(), Cell.cellState.open);
+		assertTrue(c.field.getCells()[0][0].getCellState().isOpen());
+		assertTrue(c.field.getCells()[0][1].getCellState().isOpen());
+		assertTrue(c.field.getCells()[0][2].getCellState().isOpen());
 		
 		
 		c.field = new Field(1,2);
@@ -78,17 +79,17 @@ public class ControllerTest {
 		c.segregateBombs(1, new String());
 		if(c.field.getCells()[0][0].hasBomb()){
 			c.markCell(0, 0);
-			assertEquals(cellState.checked, c.field.getCells()[0][0].getState());
+			assertTrue(c.field.getCells()[0][0].getCellState().isChecked());
 			c.markCell(0, 0);
-			assertEquals(cellState.hidden, c.field.getCells()[0][0].getState());
+			assertEquals(cellState.hidden, c.field.getCells()[0][0].getCellState().isHidden());
 			
 			if(!c.field.getCells()[0][0].hasBomb()){
 				c.clickCellR(0, 0);
-				assertEquals(cellState.open, c.field.getCells()[0][0].getState());
+				assertEquals(cellState.open, c.field.getCells()[0][0].getCellState().isOpen());
 			}else{
-				c.field.getCells()[0][1].setState(cellState.hidden);
+				c.field.getCells()[0][1].setCellState(new CellStateHidden(c.field.getCells()[0][1]));
 				c.clickCellR(0, 1);
-				assertEquals(cellState.open, c.field.getCells()[0][1].getState());
+				assertTrue(c.field.getCells()[0][1].getCellState().isOpen());
 			}
 		}
 	}

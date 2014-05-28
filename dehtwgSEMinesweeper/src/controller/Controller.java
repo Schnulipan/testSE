@@ -13,6 +13,7 @@ public class Controller extends Observable{
 	/*CLASS VARIABLES -----*/
 	public static enum GAMESTATE {lost, won, running, quit}
 	public static boolean gameRunning = false; /*definitely will be useful*/
+	public static Controller controller;
 	/*---------------------*/
 	
 	
@@ -25,6 +26,7 @@ public class Controller extends Observable{
 	/*CONSTRUCTOR------------------------------*/
 	public Controller(Field f)
 	{
+		controller = this;
 		field = f;
 		
 	}
@@ -170,16 +172,11 @@ public class Controller extends Observable{
 			}
 		}
 		return GAMESTATE.running;*/
-		
 	}
 	
 	
 	public void markCell(int ROW, int COL){
-		if(field.getCells()[ROW][COL].getState() == cellState.checked){
-			field.getCells()[ROW][COL].setState(cellState.hidden);
-		}else if(field.getCells()[ROW][COL].getState() == cellState.hidden){
-			field.getCells()[ROW][COL].setState(cellState.checked);
-		}
+		field.getCells()[ROW][COL].getCellState().check();
 		setChanged();
 		notifyObservers();
 	}

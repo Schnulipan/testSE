@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import models.models.CellStateHidden;
 import models.models.I_CellState;
 
 public class Cell {
@@ -52,9 +53,7 @@ public class Cell {
 	/*INSTACE VARIABLES--------------------------------------------------*/	
 	private int row, col;
 	
-	/*holds the cell´s state*/
-	private cellState state;
-	
+	/*holds the cell´s state*/	
 	private I_CellState cState;
 	
 
@@ -71,14 +70,17 @@ public class Cell {
 
 
 	/*CONSTRUCTOR-------*/
-	public Cell(){
+	public Cell(int ROW, int COL){
 		/*make sure the cell doesn't inherit a bomb*/
 		hasBomb = false;
 		
 		/*set the present state to hidden*/
-		state = cellState.hidden;
+		cState = new CellStateHidden(this);
 		
 		inTouchWith = 0;
+		
+		row = ROW;
+		col = COL;
 	}
 	/*------------------*/
 
@@ -99,14 +101,6 @@ public class Cell {
 	}
 	public void setCol(int col) {
 		this.col = col;
-	}
-
-	public cellState getState() {
-		return state;
-	}
-
-	public void setState(cellState state) {
-		this.state = state;
 	}
 	
 	public boolean hasBomb() {

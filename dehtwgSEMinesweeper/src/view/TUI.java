@@ -4,6 +4,7 @@ import java.util.Observable;
 import java.util.Scanner;
 
 import models.Cell;
+import models.models.I_CellState;
 import controller.Controller;
 import controller.Controller.GAMESTATE;
 
@@ -50,15 +51,12 @@ public class TUI implements I_View{
 
 	@Override
 	public void showCell(Cell c) {
-		Cell.cellState state = c.getState();
+		I_CellState state = c.getCellState();
 		
 		/*decide what will be printed - dependent on the cell´s state*/
-		switch(state)
-		{
-		case open:
+		if(state.isOpen()){
 			if(c.hasBomb()){
 				System.out.print("X");
-				break;
 			}
 			else{
 				if(c.getInTouchWith() > 0){
@@ -67,15 +65,14 @@ public class TUI implements I_View{
 				else{
 					System.out.print(" ");
 				}
-				break;
 			}
+		}
 			
-		case hidden:
+		if(state.isHidden()){
 			System.out.print("O");
-			break;
-		case checked:
+		}
+		if(state.isChecked()){
 			System.out.print("P");
-			break;
 		}
 	}
 

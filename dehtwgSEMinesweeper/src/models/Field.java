@@ -25,7 +25,7 @@ public class Field {
 		cells = new Cell[rows][cols];
 		for(int i = 0; i < rows; i++)
 			for(int o = 0; o < cols; o++){
-				cells[i][o] = new Cell();
+				cells[i][o] = new Cell(i, o);
 		}
 	}
 	
@@ -47,7 +47,7 @@ public class Field {
 		
 		for(int i = 0; i < rows; i++){
 			for(int o = 0; o < cols; o++){
-				cells[i][o] = new Cell();
+				cells[i][o] = new Cell(i, o);
 			}
 		}
 	}	

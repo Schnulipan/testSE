@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import models.Cell;
 import models.Cell.cellState;
+import models.models.CellStateChecked;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +17,7 @@ public class CellTest {
 
 	@Before
 	public void initialize() throws IOException{
-		a = new Cell();
+		a = new Cell(0, 0);
 		assertNotNull(a);
 	}
 	
@@ -24,14 +25,14 @@ public class CellTest {
 	/*getters and setters*/
 	@Test
 	public void getStateTest() {
-		a.setState(cellState.checked);
-		assertEquals(cellState.checked, a.getState());
+		a.setCellState(new CellStateChecked(a));
+		assertTrue(a.getCellState().isChecked());
 	}
 	
 	@Test
 	public void setStateTest() {
-		a.setState(cellState.checked);
-		assertEquals(cellState.checked, a.getState());
+		a.setCellState(new CellStateChecked(a));
+		assertTrue(a.getCellState().isChecked());
 	}
 	
 	@Test

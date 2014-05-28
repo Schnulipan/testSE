@@ -8,6 +8,7 @@ public interface I_CellState {
 
 	/*Methods for Controller*/
 	GAMESTATE click();
+	void check();
 	
 	/*Methods for View*/
 	BufferedImage getCellImage();

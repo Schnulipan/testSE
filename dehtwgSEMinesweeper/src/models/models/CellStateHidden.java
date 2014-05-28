@@ -5,22 +5,19 @@ import java.awt.image.BufferedImage;
 import controller.Controller;
 import controller.Controller.GAMESTATE;
 import models.Cell;
-import models.Cell.cellState;
 import models.Field;
 
 public class CellStateHidden implements I_CellState{
 
 	private Cell c;
-	private Controller con;
 	
-	public CellStateHidden(Cell cell, Controller controller)  {
+	public CellStateHidden(Cell cell)  {
 		c = cell;
-		con = controller;
 	}
 	
 	@Override
 	public GAMESTATE click() {			
-			Field f = con.field;
+			Field f = Controller.controller.field;
 			int ROW, COL;
 			ROW = c.getRow();
 			COL = c.getCol();
@@ -32,7 +29,7 @@ public class CellStateHidden implements I_CellState{
 				for(int i = 0; i < f.getRows(); i++){
 					for(int o = 0; o < f.getCols(); o++){
 						if(f.getCells()[i][o].hasBomb()){
-							f.getCells()[i][o].setCellState(new CellStateOpen(c, con));
+							f.getCells()[i][o].setCellState(new CellStateOpen(c));
 						}
 					}
 				}
@@ -41,24 +38,25 @@ public class CellStateHidden implements I_CellState{
 			{
 				/*otherwise*/
 				/*decrement the amount of freefields-variable - if 0 -> the player has won*/
-				if(--con.freeFieldsLeft == 0){
+				if(--Controller.controller.freeFieldsLeft == 0){
 					return GAMESTATE.won;
 				}
 				
+				c.setCellState(new CellStateOpen(c));
 				/*open all cells, that have no bomb contact and touch the recently clicked cell*/
 				for(int a = ROW-1; a < ROW+2; a++){
 					for(int b = COL-1;b < COL+2; b++){
 						if( ((a!=ROW) && (b == COL)) || ((a == ROW && (b != COL)))) {
-							if(con.cellIsInField(a, b)){
+							if(Controller.controller.cellIsInField(a, b)){
 								if(!f.getCells()[a][b].hasBomb()){
 									
 									if(f.getCells()[a][b].getCellState().isHidden()){
 										if(f.getCells()[a][b].getInTouchWith() == 0){
-											con.clickCellR(a, b);
+											Controller.controller.clickCellR(a, b);
 										}
 										else{
-											f.getCells()[a][b].setCellState(new CellStateOpen(c, con));
-											if(--con.freeFieldsLeft == 0){
+											f.getCells()[a][b].setCellState(new CellStateOpen(f.getCells()[a][b]));
+											if(--Controller.controller.freeFieldsLeft == 0){
 												return GAMESTATE.won;
 											}
 										}
@@ -90,6 +88,11 @@ public class CellStateHidden implements I_CellState{
 	@Override
 	public BufferedImage getCellImage() {
 		return Cell.IconsMatrix[0][0];
+	}
+
+	@Override
+	public void check() {
+		c.setCellState(new CellStateChecked(c));
 	}
 
 }

@@ -9,14 +9,10 @@ import controller.Controller.GAMESTATE;
 public class CellStateOpen implements I_CellState{
 	
 	private Cell c;
-	private Controller con;
 	
 
-	public CellStateOpen(Cell c, Controller controller) {
+	public CellStateOpen(Cell c) {
 		this.c = c;
-		con = controller;
-		
-		
 	}
 	
 	
@@ -51,12 +47,10 @@ public class CellStateOpen implements I_CellState{
 			return Cell.IconsMatrix[1][1];
 		}
 		
-		if(c.getInTouchWith() == 0){
-			return Cell.IconsMatrix[0][1];
-		}
-		
 		else{
 			switch(c.getInTouchWith()){
+			case 0:
+				return Cell.IconsMatrix[0][1];
 			case 1:
 				return Cell.IconsMatrix[2][0];
 			case 2:
@@ -66,7 +60,7 @@ public class CellStateOpen implements I_CellState{
 			case 4:
 				return Cell.IconsMatrix[3][1];
 			case 5:
-				return Cell.IconsMatrix[4][1];
+				return Cell.IconsMatrix[4][0];
 			case 6:
 				return Cell.IconsMatrix[4][1];
 			case 7:
@@ -76,6 +70,14 @@ public class CellStateOpen implements I_CellState{
 			}
 		}
 		return null;
+	}
+
+
+
+
+	@Override
+	public void check() {
+		/*nothing happens - cant check an open cell*/		
 	}
 
 }

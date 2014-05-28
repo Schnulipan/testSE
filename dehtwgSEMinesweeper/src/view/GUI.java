@@ -236,6 +236,7 @@ public class GUI extends JFrame implements I_View, ActionListener {
 							synchronized (this) {
 								this.notify();
 							}
+							break;
 						}
 					}
 				}
