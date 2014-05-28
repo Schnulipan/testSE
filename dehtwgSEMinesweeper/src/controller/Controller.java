@@ -5,7 +5,6 @@ import java.util.Observable;
 import java.util.Random;
 
 import models.Cell;
-import models.Cell.cellState;
 import models.Field;
 
 public class Controller extends Observable{

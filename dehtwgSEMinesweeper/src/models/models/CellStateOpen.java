@@ -3,7 +3,6 @@ package models.models;
 import java.awt.image.BufferedImage;
 
 import models.Cell;
-import controller.Controller;
 import controller.Controller.GAMESTATE;
 
 public class CellStateOpen implements I_CellState{
