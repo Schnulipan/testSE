@@ -81,7 +81,7 @@ public class ControllerTest {
 			c.markCell(0, 0);
 			assertTrue(c.field.getCells()[0][0].getCellState().isChecked());
 			c.markCell(0, 0);
-			assertEquals(cellState.hidden, c.field.getCells()[0][0].getCellState().isHidden());
+			assertEquals(cellState.hidden, c.field.getCells()[0][0].getCellState());
 			
 			if(!c.field.getCells()[0][0].hasBomb()){
 				c.clickCellR(0, 0);

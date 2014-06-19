@@ -12,21 +12,21 @@ public class Minesweeper {
 
 	private static Controller controller;
 	private static I_View view;
-	static GAMESTATE gamestate;
+	private static I_View TUIview;
+	public static GAMESTATE gamestate;
 	public static boolean contin = true;
-	
+	public static int nextMovePermitted = 0;
 	public static String errMessage = null;
 	
 	
 	public static void main(final String[] args)
-	{
-		
-		
+	{		
 		
 		while(contin){
 			contin = false;
 			controller = new Controller(new Field());
 			view = new GUI(controller);
+			TUIview =new TUI(controller);
 			
 			view.welcomePlayer();
 			view.demandPlayerInstructions();
