@@ -32,8 +32,8 @@ public class Minesweeper {
 			view.demandPlayerInstructions();
 			gamestate = GAMESTATE.running;
 			
-			while((gamestate = view.demandClick()) == GAMESTATE.running);
-			
+			while(((gamestate = view.demandClick()) == GAMESTATE.running) && (gamestate = TUIview.demandClick()) == GAMESTATE.running);
+//			while(((gamestate = view.demandClick()) == GAMESTATE.running));
 			view.showAllCells();
 			if(gamestate == GAMESTATE.lost)
 			{
@@ -42,6 +42,7 @@ public class Minesweeper {
 			}
 			else if(gamestate == GAMESTATE.quit){
 				view.tellPlayer("okay then... bye");
+				System.exit(0);
 			}
 			else{
 				view.tellPlayer("CONGRATULATIONS YOU WON!!!!");
